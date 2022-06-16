@@ -1,0 +1,5 @@
+nnoremap gi :action GotoImplementation<CR>
+set visualbell
+set noerrorbells
+nnoremap <leader>di :action OptimizeImports<CR>
+nnoremap <leader>cf :action ReformatCode<CR>
