@@ -33,3 +33,6 @@ Public
 .config/fish/fish_variables
 .lesshst
 .viminfo
+.3T
+.npm
+.swt

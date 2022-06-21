@@ -47,11 +47,12 @@ set ignorecase
 set smarttab
 " indents
 filetype plugin indent on
-set shiftwidth=2
-set tabstop=2
+" set shiftwidth=2
+" set tabstop=2
 set ai "Auto indent
 set si "Smart indent
-set nowrap "No Wrap lines
+" set nowrap "No Wrap lines
+set wrap linebreak nolist " soft wrap
 set backspace=start,eol,indent
 " Finding files - Search down into subfolders
 set path+=**

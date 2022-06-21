@@ -58,12 +58,12 @@ function M.setup()
           }
       }
 
-      vim.api.nvim_exec([[
-        augroup FormatAutogroup
-          autocmd!
-          autocmd BufWritePost *.java FormatWrite
-        augroup end
-      ]], true)
+      --vim.api.nvim_exec([[
+      --  augroup FormatAutogroup
+      --    autocmd!
+      --    autocmd BufWritePost *.java FormatWrite
+      --  augroup end
+      --]], true)
 
       local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
       local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -95,6 +95,7 @@ function M.setup()
       buf_set_keymap("n", "<leader>de", "<Cmd>lua require('jdtls').extract_variable()<CR>", opts)
       buf_set_keymap("v", "<leader>dm", "<Esc><Cmd>lua require('jdtls').extract_method(true)<CR>", opts)
 
+      buf_set_keymap("n", "<leader>ca", "<Cmd>lua vim.lsp.buf.code_action()<CR>", opts)
       buf_set_keymap("n", "<leader>cf", "<cmd>lua vim.lsp.buf.format()<CR>", opts)
 
       vim.api.nvim_exec([[
