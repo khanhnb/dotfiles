@@ -5,4 +5,5 @@ nnoremap <leader>di :action OptimizeImports<CR>
 nnoremap <leader>cf :action ReformatCode<CR>
 nnoremap K :action QuickJavaDoc<CR>
 nnoremap <leader>rn :action RenameElement<CR>
-nnoremap <leader>ca :action ShowIntentionActions<CR>
+nnoremap ;f :action GotoClass<CR>
+nnoremap ;r :action SearchEverywhere<CR>
