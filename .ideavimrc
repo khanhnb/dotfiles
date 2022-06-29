@@ -7,3 +7,9 @@ nnoremap K :action QuickJavaDoc<CR>
 nnoremap <leader>rn :action RenameElement<CR>
 nnoremap ;f :action GotoClass<CR>
 nnoremap ;r :action SearchEverywhere<CR>
+nnoremap [d :action GotoPreviousError<CR>
+nnoremap ]d :action GotoNextError<CR>
+nnoremap [m :action MethodUp<CR>
+nnoremap m] :action MethodDown<CR>
+vnoremap <leader>sw :action SurroundWith<CR>
+nnoremap <leader>ca :action ShowIntentionActions<CR>
