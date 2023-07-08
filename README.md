@@ -1,2 +1,8 @@
 # config_manager
-My configuration files
+My dev configs
+
+Install requirements:
+```
+brew install neovim tmux fish startship alacritty zoxide koekeishiya/formulae/skhd koekeishiya/formulae/yabai
+```
+
