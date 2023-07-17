@@ -71,10 +71,11 @@ end
 
 # keymaps
 bind -M insert \cf tmux-sessionizer
+bind -M insert \cfr 'source ~/.config/fish/config.fish'
 
 starship init fish | source
 zoxide init fish | source
 
-set -x JAVA_HOME '/opt/homebrew/Cellar/openjdk@17/17.0.6'
+set -x JAVA_HOME '/opt/homebrew/Cellar/openjdk@17/17.0.7'
 set -x JDTLS_JVM_ARGS "-javaagent:$HOME/.local/share/java/lombok.jar"
 

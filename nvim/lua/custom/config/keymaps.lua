@@ -1,5 +1,7 @@
 vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
+-- git
 vim.keymap.set('n', '<leader>gs', vim.cmd.Git)
+vim.keymap.set('n', '<leader>gb', require('gitsigns').blame_line, {desc = 'Git blame a line'})
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -92,4 +94,7 @@ vim.keymap.set('n', '<C-w>j', '<C-w>5+', {})
 -- tabs
 vim.keymap.set('n', ']b', ':bn<CR>', {})
 vim.keymap.set('n', '[b', ':bp<CR>', {})
+
+-- reload init.lua
+vim.keymap.set('n', '<leader><leader>', ':source ~/.config/nvim/init.lua<CR>', {})
 
