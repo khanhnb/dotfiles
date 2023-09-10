@@ -69,13 +69,27 @@ function tmux-sessionizer
 
 end
 
+function show-desktop-icon
+  if test (uname) != Darwin
+    exit 0
+  end
+  if test $(defaults read com.apple.finder CreateDesktop) = "true"
+    defaults write com.apple.finder CreateDesktop false;
+  else
+    defaults write com.apple.finder CreateDesktop true;
+  end
+  killall Finder
+end
+
 # keymaps
 bind -M insert \cf tmux-sessionizer
-bind -M insert \cfr 'source ~/.config/fish/config.fish'
+# bind -M insert \cr 'source ~/.config/fish/config.fish'
 
 starship init fish | source
 zoxide init fish | source
 
 set -x JAVA_HOME '/opt/homebrew/Cellar/openjdk@17/17.0.7'
 set -x JDTLS_JVM_ARGS "-javaagent:$HOME/.local/share/java/lombok.jar"
+
+echo "Fish reloaded"
 
