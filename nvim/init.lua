@@ -553,6 +553,7 @@ local cmp = require 'cmp'
 local luasnip = require 'luasnip'
 require('luasnip.loaders.from_vscode').lazy_load()
 luasnip.config.setup {}
+luasnip.filetype_extend('typescriptreact', { 'html' })
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
 cmp.setup {

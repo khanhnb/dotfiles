@@ -4,6 +4,7 @@ rm -rf ~/.config/nvim
 rm -rf ~/.config/fish
 rm -rf ~/.config/alacritty
 rm ~/.tmux.conf
+rm ~/.gitconfig
 rm -rf ~/.config/yabai
 rm -rf ~/.config/skhd
 ln -s $(pwd)/nvim ~/.config/nvim
@@ -12,3 +13,4 @@ ln -s $(pwd)/alacritty ~/.config/alacritty
 ln -s $(pwd)/.tmux.conf ~/.tmux.conf
 ln -s $(pwd)/yabai ~/.config/yabai
 ln -s $(pwd)/skhd ~/.config/skhd
+ln -s $(pwd)/.gitconfig ~/.gitconfig

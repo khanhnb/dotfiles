@@ -20,7 +20,7 @@ vim.keymap.set("n", "N", "Nzzzv")
 -- end)
 
 vim.keymap.set('n', '<C-a>', 'gg<S-v>G', {})
-vim.keymap.set('n', '<C-s>', vim.cmd.write, {})
+-- vim.keymap.set('n', '<C-s>', vim.cmd.write, {})
 
 
 -- greatest remap ever

@@ -22,6 +22,7 @@ window:
     y: 10
   dynamic_padding: false
   decorations: buttonless
+  option_as_alt: OnlyLeft
 
 
 # TokyoNight Alacritty Colors - moon
