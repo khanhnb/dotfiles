@@ -43,6 +43,14 @@ yabai -m config                                 \
 yabai -m rule --add app="^System Settings$"           manage=off
 yabai -m rule --add app="^Stats$"           manage=off
 yabai -m rule --add app="^Charles$"           manage=off
+yabai -m rule --add app="^Installer$"           manage=off
+yabai -m rule --add app="^DBeaver.*$"       manage=off
+yabai -m rule --add app="^System Information$"       manage=off
+yabai -m rule --add app="^Activity Monitor$"       manage=off
+yabai -m rule --add app="^Tunnelblick$"       manage=off
+yabai -m rule --add app="^Insomnium$"       manage=off
+yabai -m rule --add app="^Insomnia$"       manage=off
+yabai -m rule --add app="^Logi Options$"       manage=off
 
 echo "yabai configuration loaded.."
 

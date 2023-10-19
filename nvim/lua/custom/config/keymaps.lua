@@ -98,3 +98,4 @@ vim.keymap.set('n', '[b', ':bp<CR>', {})
 -- reload init.lua
 vim.keymap.set('n', '<leader><leader>', ':source ~/.config/nvim/init.lua<CR>', {})
 
+

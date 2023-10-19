@@ -81,6 +81,14 @@ function show-desktop-icon
   killall Finder
 end
 
+function disable-auto-switch-desktop
+  if test (uname) != Darwin
+    exit 0
+  end
+  defaults write com.apple.dock workspaces-auto-swoosh -bool NO
+  killall Dock
+end
+
 # keymaps
 bind -M insert \cf tmux-sessionizer
 # bind -M insert \cr 'source ~/.config/fish/config.fish'
@@ -88,7 +96,7 @@ bind -M insert \cf tmux-sessionizer
 starship init fish | source
 zoxide init fish | source
 
-set -x JAVA_HOME '/opt/homebrew/Cellar/openjdk@17/17.0.7'
+set -x JAVA_HOME '/opt/homebrew/opt/openjdk@17'
 set -x JDTLS_JVM_ARGS "-javaagent:$HOME/.local/share/java/lombok.jar"
 
 echo "Fish reloaded"
