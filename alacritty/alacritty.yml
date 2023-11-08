@@ -26,35 +26,196 @@ window:
 
 
 # TokyoNight Alacritty Colors - moon
+# colors:
+#   # Default colors
+#   primary:
+#     background: '0x222436'
+#     foreground: '0xc8d3f5'
+#
+#   # Normal colors
+#   normal:
+#     black:   '0x1b1d2b'
+#     red:     '0xff757f'
+#     green:   '0xc3e88d'
+#     yellow:  '0xffc777'
+#     blue:    '0x82aaff'
+#     magenta: '0xc099ff'
+#     cyan:    '0x86e1fc'
+#     white:   '0x828bb8'
+#
+#   # Bright colors
+#   bright:
+#     black:   '0x444a73'
+#     red:     '0xff757f'
+#     green:   '0xc3e88d'
+#     yellow:  '0xffc777'
+#     blue:    '0x82aaff'
+#     magenta: '0xc099ff'
+#     cyan:    '0x86e1fc'
+#     white:   '0xc8d3f5'
+#
+#   indexed_colors:
+#     - { index: 16, color: '0xff966c' }
+#     - { index: 17, color: '0xc53b53' }
+#
+
+# Catppuccin alacrity color - mocha
+# colors:
+#     primary:
+#         background: "#1E1E2E" # base
+#         foreground: "#CDD6F4" # text
+#         # Bright and dim foreground colors
+#         dim_foreground: "#CDD6F4" # text
+#         bright_foreground: "#CDD6F4" # text
+#
+#     # Cursor colors
+#     cursor:
+#         text: "#1E1E2E" # base
+#         cursor: "#F5E0DC" # rosewater
+#     vi_mode_cursor:
+#         text: "#1E1E2E" # base
+#         cursor: "#B4BEFE" # lavender
+#
+#     # Search colors
+#     search:
+#         matches:
+#             foreground: "#1E1E2E" # base
+#             background: "#A6ADC8" # subtext0
+#         focused_match:
+#             foreground: "#1E1E2E" # base
+#             background: "#A6E3A1" # green
+#         footer_bar:
+#             foreground: "#1E1E2E" # base
+#             background: "#A6ADC8" # subtext0
+#
+#     # Keyboard regex hints
+#     hints:
+#         start:
+#             foreground: "#1E1E2E" # base
+#             background: "#F9E2AF" # yellow
+#         end:
+#             foreground: "#1E1E2E" # base
+#             background: "#A6ADC8" # subtext0
+#
+#     # Selection colors
+#     selection:
+#         text: "#1E1E2E" # base
+#         background: "#F5E0DC" # rosewater
+#
+#     # Normal colors
+#     normal:
+#         black: "#45475A" # surface1
+#         red: "#F38BA8" # red
+#         green: "#A6E3A1" # green
+#         yellow: "#F9E2AF" # yellow
+#         blue: "#89B4FA" # blue
+#         magenta: "#F5C2E7" # pink
+#         cyan: "#94E2D5" # teal
+#         white: "#BAC2DE" # subtext1
+#
+#     # Bright colors
+#     bright:
+#         black: "#585B70" # surface2
+#         red: "#F38BA8" # red
+#         green: "#A6E3A1" # green
+#         yellow: "#F9E2AF" # yellow
+#         blue: "#89B4FA" # blue
+#         magenta: "#F5C2E7" # pink
+#         cyan: "#94E2D5" # teal
+#         white: "#A6ADC8" # subtext0
+#
+#     # Dim colors
+#     dim:
+#         black: "#45475A" # surface1
+#         red: "#F38BA8" # red
+#         green: "#A6E3A1" # green
+#         yellow: "#F9E2AF" # yellow
+#         blue: "#89B4FA" # blue
+#         magenta: "#F5C2E7" # pink
+#         cyan: "#94E2D5" # teal
+#         white: "#BAC2DE" # subtext1
+#
+#     indexed_colors:
+#         - { index: 16, color: "#FAB387" }
+#         - { index: 17, color: "#F5E0DC" }
+
+# Catppuccin colors for alacrity - frappe
 colors:
-  # Default colors
-  primary:
-    background: '0x222436'
-    foreground: '0xc8d3f5'
+    # Default colors
+    primary:
+        background: "#303446" # base
+        foreground: "#C6D0F5" # text
+        # Bright and dim foreground colors
+        dim_foreground: "#C6D0F5" # text
+        bright_foreground: "#C6D0F5" # text
 
-  # Normal colors
-  normal:
-    black:   '0x1b1d2b'
-    red:     '0xff757f'
-    green:   '0xc3e88d'
-    yellow:  '0xffc777'
-    blue:    '0x82aaff'
-    magenta: '0xc099ff'
-    cyan:    '0x86e1fc'
-    white:   '0x828bb8'
+    # Cursor colors
+    cursor:
+        text: "#303446" # base
+        cursor: "#F2D5CF" # rosewater
+    vi_mode_cursor:
+        text: "#303446" # base
+        cursor: "#BABBF1" # lavender
 
-  # Bright colors
-  bright:
-    black:   '0x444a73'
-    red:     '0xff757f'
-    green:   '0xc3e88d'
-    yellow:  '0xffc777'
-    blue:    '0x82aaff'
-    magenta: '0xc099ff'
-    cyan:    '0x86e1fc'
-    white:   '0xc8d3f5'
+    # Search colors
+    search:
+        matches:
+            foreground: "#303446" # base
+            background: "#A5ADCE" # subtext0
+        focused_match:
+            foreground: "#303446" # base
+            background: "#A6D189" # green
+        footer_bar:
+            foreground: "#303446" # base
+            background: "#A5ADCE" # subtext0
 
-  indexed_colors:
-    - { index: 16, color: '0xff966c' }
-    - { index: 17, color: '0xc53b53' }
+    # Keyboard regex hints
+    hints:
+        start:
+            foreground: "#303446" # base
+            background: "#E5C890" # yellow
+        end:
+            foreground: "#303446" # base
+            background: "#A5ADCE" # subtext0
 
+    # Selection colors
+    selection:
+        text: "#303446" # base
+        background: "#F2D5CF" # rosewater
+
+    # Normal colors
+    normal:
+        black: "#51576D" # surface1
+        red: "#E78284" # red
+        green: "#A6D189" # green
+        yellow: "#E5C890" # yellow
+        blue: "#8CAAEE" # blue
+        magenta: "#F4B8E4" # pink
+        cyan: "#81C8BE" # teal
+        white: "#B5BFE2" # subtext1
+
+    # Bright colors
+    bright:
+        black: "#626880" # surface2
+        red: "#E78284" # red
+        green: "#A6D189" # green
+        yellow: "#E5C890" # yellow
+        blue: "#8CAAEE" # blue
+        magenta: "#F4B8E4" # pink
+        cyan: "#81C8BE" # teal
+        white: "#A5ADCE" # subtext0
+
+    # Dim colors
+    dim:
+        black: "#51576D" # surface1
+        red: "#E78284" # red
+        green: "#A6D189" # green
+        yellow: "#E5C890" # yellow
+        blue: "#8CAAEE" # blue
+        magenta: "#F4B8E4" # pink
+        cyan: "#81C8BE" # teal
+        white: "#B5BFE2" # subtext1
+
+    indexed_colors:
+        - { index: 16, color: "#EF9F76" }
+        - { index: 17, color: "#F2D5CF" }

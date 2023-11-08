@@ -96,17 +96,50 @@ require('lazy').setup({
     'hrsh7th/nvim-cmp',
     dependencies = {
       -- Snippet Engine & its associated nvim-cmp source
-      'L3MON4D3/LuaSnip',
+      { 'L3MON4D3/LuaSnip', dependencies = { 'rafamadriz/friendly-snippets' } },
       'saadparwaiz1/cmp_luasnip',
 
       -- Adds LSP completion capabilities
       'hrsh7th/cmp-nvim-lsp',
 
       -- Adds a number of user-friendly snippets
-      'rafamadriz/friendly-snippets',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      { 'onsails/lspkind-nvim', config = function()
+        require('lspkind').init({
+          preset = 'codicons',
+          symbol_map = {
+            Text = "",
+            Method = "",
+            Function = "",
+            Constructor = "",
+            Field = "ﰠ",
+            Variable = "",
+            Class = "ﴯ",
+            Interface = "",
+            Module = "",
+            Property = "ﰠ",
+            Unit = "塞",
+            Value = "",
+            Enum = "",
+            Keyword = "",
+            Snippet = "",
+            Color = "",
+            File = "",
+            Reference = "",
+            Folder = "",
+            EnumMember = "",
+            Constant = "",
+            Struct = "פּ",
+            Event = "",
+            Operator = "",
+            TypeParameter = ""
+          },
+        });
+      end;
+      },
     },
   },
-
   -- Useful plugin to show you pending keybinds.
   { 'folke/which-key.nvim', opts = {} },
   {
@@ -143,64 +176,48 @@ require('lazy').setup({
   --   end,
   -- },
   --
-  {
-    "folke/tokyonight.nvim",
-    lazy = false,
-    priority = 1000,
-    opts = {
-      style = 'moon',
-      transparent = true,
-      styles = {
-        floats = 'transparent',
-        sidebars = 'transparent',
-      }
-    },
-    config = function(_, opts)
-      require('tokyonight').setup(opts)
-      require('tokyonight').load()
-    end,
-  },
-  --
   -- {
-  --   "catppuccin/nvim",
+  --   "folke/tokyonight.nvim",
+  --   lazy = false,
   --   priority = 1000,
-  --   name = "catppuccin",
-  --   config = function()
-  --     require('catppuccin').load()
-  --     require('catppuccin').setup({
-  --       flavour = "mocha",
-  --       transparent_background = false,
-  --       integrations = {
-  --         alpha = true,
-  --         cmp = true,
-  --         gitsigns = true,
-  --         illuminate = true,
-  --         indent_blankline = { enabled = true },
-  --         lsp_trouble = true,
-  --         mason = true,
-  --         mini = true,
-  --         native_lsp = {
-  --           enabled = true,
-  --           underlines = {
-  --             errors = { "undercurl" },
-  --             hints = { "undercurl" },
-  --             warnings = { "undercurl" },
-  --             information = { "undercurl" },
-  --           },
-  --         },
-  --         navic = { enabled = true },
-  --         neotest = true,
-  --         noice = true,
-  --         notify = true,
-  --         neotree = true,
-  --         semantic_tokens = true,
-  --         telescope = true,
-  --         treesitter = true,
-  --         which_key = true,
-  --       },
-  --     })
+  --   opts = {
+  --     style = 'moon',
+  --     transparent = true,
+  --     styles = {
+  --       floats = 'transparent',
+  --       sidebars = 'transparent',
+  --     }
+  --   },
+  --   config = function(_, opts)
+  --     require('tokyonight').setup(opts)
+  --     require('tokyonight').load()
   --   end,
   -- },
+  --
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+    opts = {
+      flavour = "frappe", -- latte, frappe, macchiato, mocha
+      transparent_background = false, -- disables setting the background color.
+      integrations = {
+        cmp = true,
+        gitsigns = true,
+        nvimtree = true,
+        treesitter = true,
+        notify = false,
+        telescope = {
+          enabled = true,
+        },
+        mini = {
+          enabled = true,
+          indentscope_color = "",
+        },
+        -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
+      },
+    },
+  },
 
   {
     -- Set lualine as statusline
@@ -208,15 +225,20 @@ require('lazy').setup({
     -- See `:help lualine.txt`
     opts = {
       options = {
-        icons_enabled = false,
-        theme = 'tokyonight',
+        icons_enabled = true,
+        -- theme = 'tokyonight',
+        -- theme = 'onedark',
+        theme = 'catppuccin',
         component_separators = '|',
         section_separators = '',
       },
       sections = {
         lualine_a = { 'mode' },
-        lualine_b = { 'branch', 'diff', 'diagnostics' },
-        lualine_c = { 'filename' },
+        lualine_b = { 'branch', 'diff', { 'diagnostics', symbols = { error = 'E', warn = 'W', info = 'I', hint = 'H' }, } },
+        -- lualine_b = { 'FugitiveHead'},
+        -- lualine_c = { 'buffers' },
+        -- lualine_c = { 'filename' },
+        lualine_c = { '%=', 'buffers' },
         lualine_x = { 'encoding', 'fileformat', 'filetype' },
         lualine_y = { 'progress' },
         lualine_z = { 'location' }
@@ -343,7 +365,7 @@ vim.o.timeout = true
 vim.o.timeoutlen = 300
 
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
+vim.o.completeopt = 'menu,menuone,noselect'
 
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
@@ -643,9 +665,13 @@ mason_lspconfig.setup_handlers {
 -- See `:help cmp`
 local cmp = require 'cmp'
 local luasnip = require 'luasnip'
+-- load default snippets
+require('luasnip.loaders.from_vscode').lazy_load({})
+-- load custom snippets
 require('luasnip.loaders.from_vscode').lazy_load({
-  paths = {'./lua/custom/custom_snippets'}
+  paths = { './lua/custom/custom_snippets' }
 })
+-- require('luasnip.loaders.from_vscode').lazy_load({ paths = { './lua/custom/custom_snippets' }})
 luasnip.config.setup {}
 luasnip.filetype_extend('typescriptreact', { 'html' })
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
@@ -692,6 +718,10 @@ cmp.setup {
   sources = {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
+    { name = 'nvim_lua' },
+    { name = 'path' },
+    { name = 'buffer', keyword_length = 5 },
+    { name = "gh_issues" },
   },
   window = {
     completion = {
@@ -703,7 +733,21 @@ cmp.setup {
     documentation = {
       border = "rounded",
     }
-  }
+  },
+  formatting = {
+    format = require('lspkind').cmp_format {
+      with_text = true,
+      menu = {
+        buffer = "[buf]",
+        nvim_lsp = "[LSP]",
+        path = "[path]",
+        tags = "[tags]",
+        luasnip = "[snip]",
+        gh_issues = "[issues]",
+        nvim_lua = "[api]",
+      }
+    }
+  },
 }
 
 -- The line beneath this is called `modeline`. See `:help modeline`

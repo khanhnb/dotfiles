@@ -99,5 +99,5 @@ zoxide init fish | source
 set -x JAVA_HOME '/opt/homebrew/opt/openjdk@17'
 set -x JDTLS_JVM_ARGS "-javaagent:$HOME/.local/share/java/lombok.jar"
 
-echo "Fish reloaded"
+# echo "Fish reloaded"
 

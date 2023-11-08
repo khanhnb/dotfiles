@@ -1,7 +1,9 @@
 vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
 -- git
-vim.keymap.set('n', '<leader>gs', vim.cmd.Git)
+vim.keymap.set('n', '<leader>gs', ':0G<CR>', {desc = 'Git status'})
 vim.keymap.set('n', '<leader>gb', require('gitsigns').blame_line, {desc = 'Git blame a line'})
+vim.keymap.set("n", "<leader>gc", ":Git commit -m \"", {noremap=false})
+vim.keymap.set("n", "<leader>gp", ":Git push -u origin HEAD<CR>", {noremap=false})
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -59,15 +61,16 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
--- vim.keymap.set("n", "<leader><leader>", function()
---     vim.cmd("so")
--- end)
+vim.keymap.set("n", "<leader><leader>", function()
+    vim.cmd("so")
+end)
 
 -- Competitive programming
 vim.keymap.set('n', '<F8>', ':!g++ -std=c++17 -Wshadow -Wall -o %:r % -O2 -Wno-unused-result<CR>')
 vim.keymap.set('n', '<F9>',
     ':!g++ -std=c++17 -Wshadow -Wall -o %:r % -g -fsanitize=address -fsanitize=undefined -D_GLIBCXX_DEBUG<CR>')
-vim.keymap.set('n', '<F10>', ':split<CR>:terminal %:r<CR>')
+-- vim.keymap.set('n', '<F10>', ':split<CR>:terminal %:r<CR>')
+vim.keymap.set('n', '<F10>', ':terminal %:r<CR>')
 
 -- LuaSnip
 vim.keymap.set({ 'i', 's' }, '<c-n>', "<cmd>lua require'luasnip'.jump(1)<CR>", { noremap = true, silent = true })
@@ -96,6 +99,6 @@ vim.keymap.set('n', ']b', ':bn<CR>', {})
 vim.keymap.set('n', '[b', ':bp<CR>', {})
 
 -- reload init.lua
-vim.keymap.set('n', '<leader><leader>', ':source ~/.config/nvim/init.lua<CR>', {})
+-- vim.keymap.set('n', '<leader><leader>', ':source ~/.config/nvim/init.lua<CR>', {})
 
 
