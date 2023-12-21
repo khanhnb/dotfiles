@@ -64,3 +64,13 @@ require('lspconfig.ui.windows').default_options = {
 }
 
 vim.cmd.colorscheme "catppuccin"
+
+vim.opt.foldmethod="expr"
+vim.opt.foldexpr="nvim_treesitter#foldexpr()"
+vim.opt.foldenable = false;
+vim.opt.foldlevel = 0;
+
+require('ts_context_commentstring').setup {
+ enable_autocmd = false,
+}
+
