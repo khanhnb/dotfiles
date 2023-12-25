@@ -103,3 +103,5 @@ vim.keymap.set('n', '[b', ':bp<CR>', {})
 -- vim.keymap.set('n', '<leader><leader>', ':source ~/.config/nvim/init.lua<CR>', {})
 
 
+-- undotree
+vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)

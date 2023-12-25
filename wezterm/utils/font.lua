@@ -4,8 +4,8 @@ local M = {}
 
 M.get_font = function()
 	local fonts = {
-		"JetBrainsMono Nerd Font Mono",
-		"FiraCode Nerd Font Mono",
+		-- "JetBrainsMono Nerd Font Mono",
+		-- "FiraCode Nerd Font Mono",
 		"GeistMono Nerd Font",
 	}
 	local family = h.get_random_entry(fonts)

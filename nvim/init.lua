@@ -84,7 +84,7 @@ require('lazy').setup({
 
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', tag = 'legacy', opts = { window = { blend = 0 } } },
+      { 'j-hui/fidget.nvim',       tag = 'legacy', opts = { window = { blend = 0 } } },
 
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
@@ -105,43 +105,45 @@ require('lazy').setup({
       -- Adds a number of user-friendly snippets
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
-      { 'onsails/lspkind-nvim', config = function()
-        require('lspkind').init({
-          preset = 'codicons',
-          symbol_map = {
-            Text = "󰉿",
-            Method = "󰆧",
-            Function = "󰊕",
-            Constructor = "",
-            Field = "󰜢",
-            Variable = "󰀫",
-            Class = "󰠱",
-            Interface = "",
-            Module = "",
-            Property = "󰜢",
-            Unit = "󰑭",
-            Value = "󰎠",
-            Enum = "",
-            Keyword = "󰌋",
-            Snippet = "",
-            Color = "󰏘",
-            File = "󰈙",
-            Reference = "󰈇",
-            Folder = "󰉋",
-            EnumMember = "",
-            Constant = "󰏿",
-            Struct = "󰙅",
-            Event = "",
-            Operator = "󰆕",
-            TypeParameter = "",
-          },
-        });
-      end;
+      {
+        'onsails/lspkind-nvim',
+        config = function()
+          require('lspkind').init({
+            preset = 'codicons',
+            symbol_map = {
+              Text = "󰉿",
+              Method = "󰆧",
+              Function = "󰊕",
+              Constructor = "",
+              Field = "󰜢",
+              Variable = "󰀫",
+              Class = "󰠱",
+              Interface = "",
+              Module = "",
+              Property = "󰜢",
+              Unit = "󰑭",
+              Value = "󰎠",
+              Enum = "",
+              Keyword = "󰌋",
+              Snippet = "",
+              Color = "󰏘",
+              File = "󰈙",
+              Reference = "󰈇",
+              Folder = "󰉋",
+              EnumMember = "",
+              Constant = "󰏿",
+              Struct = "󰙅",
+              Event = "",
+              Operator = "󰆕",
+              TypeParameter = "",
+            },
+          });
+        end,
       },
     },
   },
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  { 'folke/which-key.nvim',   opts = {} },
   {
     -- Adds git releated signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -199,7 +201,7 @@ require('lazy').setup({
     name = "catppuccin",
     priority = 1000,
     opts = {
-      flavour = "mocha", -- latte, frappe, macchiato, mocha
+      flavour = "mocha",             -- latte, frappe, macchiato, mocha
       -- flavour = require('../wezterm/utils/helpers.lua').is_dark() and "mocha" or "frappe",
       transparent_background = true, -- disables setting the background color.
       -- background = {
@@ -267,7 +269,8 @@ require('lazy').setup({
   },
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim',
+  {
+    'numToStr/Comment.nvim',
     opts = {},
     config = function()
       require('Comment').setup {
@@ -570,7 +573,7 @@ local servers = {
 
   lua_ls = {
     Lua = {
-      workspace = { checkThirdParty = false },
+      workspace = { checkThirdParty = false, },
       telemetry = { enable = false },
     },
   },
@@ -659,7 +662,7 @@ cmp.setup {
     { name = 'luasnip' },
     { name = 'nvim_lua' },
     { name = 'path' },
-    { name = 'buffer', keyword_length = 5 },
+    { name = 'buffer',   keyword_length = 5 },
     { name = "gh_issues" },
   },
   window = {

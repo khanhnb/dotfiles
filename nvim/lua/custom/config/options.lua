@@ -25,7 +25,7 @@ vim.o.termguicolors = true
 vim.o.scrolloff = 8
 vim.o.signcolumn = "yes"
 
-vim.o.colorcolumn = "80"
+-- vim.o.colorcolumn = "80"
 
 -- cursorline - underline
 vim.o.cursorline = true
@@ -39,6 +39,7 @@ vim.g.netrw_keepdir = 0
 vim.opt.list = true
 -- vim.opt.listchars:append "space:⋅"
 vim.opt.listchars:append "eol:↵"
+vim.opt.guicursor = ""
 
 -- lsp round border
 local _border = "rounded"

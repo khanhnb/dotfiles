@@ -59,6 +59,8 @@ local config = {
 		-- CTRL-SHIFT-l activates the debug overlay
 		{ key = 'D', mods = 'CTRL', action = wezterm.action.ShowDebugOverlay },
 		{ key = 'L', mods = 'CTRL', action = wezterm.action.DisableDefaultAssignment, },
+		{ key = 'K', mods = 'CTRL', action = wezterm.action.DisableDefaultAssignment, },
+		{ key = 'H', mods = 'CTRL', action = wezterm.action.DisableDefaultAssignment, },
 	},
 }
 
