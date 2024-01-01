@@ -4,6 +4,7 @@ rm -rf ~/.config/nvim
 rm -rf ~/.config/fish
 rm -rf ~/.config/alacritty
 rm -rf ~/.config/wezterm
+rm -rf ~/.config/karabiner
 rm ~/.tmux.conf
 rm ~/.gitconfig
 rm -rf ~/.config/yabai
@@ -15,4 +16,5 @@ ln -s $(pwd)/wezterm ~/.config/wezterm
 ln -s $(pwd)/.tmux.conf ~/.tmux.conf
 ln -s $(pwd)/yabai ~/.config/yabai
 ln -s $(pwd)/skhd ~/.config/skhd
+ln -s $(pwd)/karabiner ~/.config/karabiner
 ln -s $(pwd)/.gitconfig ~/.gitconfig

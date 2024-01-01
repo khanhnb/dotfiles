@@ -4,8 +4,8 @@ local M = {}
 
 M.get_wallpaper = function()
 	local wallpapers = {}
-	local wallpapers_glob = os.getenv("HOME")
-		.. "/Pictures/wezterm/**"
+	-- local wallpapers_glob = os.getenv("HOME") .. "/Pictures/wezterm/**"
+	local wallpapers_glob = os.getenv("HOME") .. "/.config/wezterm/wallpapers/**"
 	for _, v in ipairs(wezterm.glob(wallpapers_glob)) do
 		if not string.match(v, "%.DS_Store$") then
 			table.insert(wallpapers, v)
