@@ -4,7 +4,9 @@
 
 Install requirements:
 ```
-brew install neovim tmux fish startship alacritty zoxide koekeishiya/formulae/skhd koekeishiya/formulae/yabai fzf ripgrep
+brew tap homebrew/cask-fonts
+brew install font-geist-mono-nerd-font font-jetbrains-mono-nerd-font font-fira-code-nerd-font
+brew install neovim tmux fish starship zoxide koekeishiya/formulae/skhd koekeishiya/formulae/yabai fzf ripgrep wezterm
 ```
 
 To disable desktop rearrangement:
