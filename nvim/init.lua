@@ -473,7 +473,7 @@ vim.defer_fn(function()
     -- Add languages to be installed here that you want installed for treesitter
     -- ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim',
     ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'javascript', 'vimdoc', 'vim',
-      'java' },
+      'java', 'typescript', 'solidity' },
 
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
     auto_install = false,
@@ -661,8 +661,8 @@ cmp.setup {
     end,
   },
   mapping = cmp.mapping.preset.insert {
-    ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-    ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+    -- ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+    -- ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
     -- ['<C-n>'] = cmp.mapping.select_next_item(),
     -- ['<C-p>'] = cmp.mapping.select_prev_item(),
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
@@ -672,7 +672,7 @@ cmp.setup {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
-    ['<Tab>'] = cmp.mapping(function(fallback)
+    ['<C-n>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         -- cmp.select_next_item()
         cmp.select_next_item(cmp_select)
@@ -682,7 +682,7 @@ cmp.setup {
         fallback()
       end
     end, { 'i', 's' }),
-    ['<S-Tab>'] = cmp.mapping(function(fallback)
+    ['<C-p>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         -- cmp.select_prev_item()
         cmp.select_prev_item(cmp_select)

@@ -22,7 +22,8 @@ return {
         suggestion = {
           auto_trigger = true,
           keymap = {
-            accept = "<C-a>",
+            -- accept = "<C-a>",
+            accept = "<Tab>",
           },
         }
       })

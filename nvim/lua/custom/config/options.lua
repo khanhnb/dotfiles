@@ -25,7 +25,7 @@ vim.o.termguicolors = true
 vim.o.scrolloff = 8
 vim.o.signcolumn = "yes"
 
--- vim.o.colorcolumn = "80"
+vim.o.colorcolumn = "80"
 
 -- cursorline - underline
 vim.o.cursorline = true
@@ -56,8 +56,8 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
   }
 )
 
-vim.diagnostic.config{
-  float={border=_border}
+vim.diagnostic.config {
+  float = { border = _border }
 }
 
 require('lspconfig.ui.windows').default_options = {
@@ -66,12 +66,11 @@ require('lspconfig.ui.windows').default_options = {
 
 vim.cmd.colorscheme "catppuccin"
 
-vim.opt.foldmethod="expr"
-vim.opt.foldexpr="nvim_treesitter#foldexpr()"
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldenable = false;
 vim.opt.foldlevel = 0;
 
 require('ts_context_commentstring').setup {
- enable_autocmd = false,
+  enable_autocmd = false,
 }
-
