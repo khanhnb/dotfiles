@@ -60,7 +60,7 @@ vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+-- vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
@@ -100,8 +100,16 @@ vim.keymap.set('n', ']b', ':bn<CR>', {})
 vim.keymap.set('n', '[b', ':bp<CR>', {})
 
 -- reload init.lua
--- vim.keymap.set('n', '<leader><leader>', ':source ~/.config/nvim/init.lua<CR>', {})
+vim.keymap.set('n', '<leader><leader>', ':source ~/.config/nvim/init.lua<CR>', {})
 
 
 -- undotree
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+
+-- trouble
+vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end, {desc = "Toggle Trouble"})
+vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end, {desc = "Trouble Workspace"})
+vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end, {desc = "Trouble Document Diagnostics"})
+vim.keymap.set("n", "<leader>xq", function() require("trouble").toggle("quickfix") end, {desc = "Trouble Quickfix"})
+vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist") end, {desc = "Trouble Loclist"})
+vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end, {desc = "Trouble LSP References"})

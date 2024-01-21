@@ -3,7 +3,8 @@
 --
 -- See the kickstart.nvim README for more information
 return {
-  { "folke/zen-mode.nvim",
+  {
+    "folke/zen-mode.nvim",
     opts = {
       -- your configuration comes here
       -- or leave it empty to use the default settings
@@ -31,11 +32,29 @@ return {
   },
   {
     "mbbill/undotree",
-    config = function ()
+    config = function()
       vim.g.undotree_WindowLayout = 2
     end
   },
   {
     "nvim-treesitter/playground",
   },
+  {
+    "folke/trouble.nvim",
+    opts = {
+      -- settings without a patched font or icons
+      icons = false,
+      fold_open = "v",    -- icon used for open folds
+      fold_closed = ">",  -- icon used for closed folds
+      indent_lines = false, -- add an indent guide below the fold icons
+      signs = {
+        -- icons / text used for a diagnostic
+        error = "error",
+        warning = "warn",
+        hint = "hint",
+        information = "info"
+      },
+      use_diagnostic_signs = false -- enabling this will use the signs defined in your lsp client
+    },
+  }
 }

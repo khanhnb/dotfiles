@@ -246,7 +246,7 @@ require('lazy').setup({
         -- lualine_c = { 'buffers' },
         -- lualine_c = { 'filename' },
         lualine_c = { '%=', 'buffers' },
-        lualine_x = { 'filetype' },
+        lualine_x = {'encoding', 'fileformat', 'filetype'},
         lualine_y = { 'progress' },
         lualine_z = { 'location' }
       },

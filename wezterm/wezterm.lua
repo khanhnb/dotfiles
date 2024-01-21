@@ -19,7 +19,7 @@ local wezterm = require("wezterm")
 -- local act = wezterm.action
 
 wezterm.time.call_after(600, function()
-  wezterm.reload_configuration()
+	wezterm.reload_configuration()
 end)
 
 local config = {
@@ -31,7 +31,7 @@ local config = {
 
 	-- font
 	font = f.get_font(),
-	font_size = 18,
+	font_size = 16,
 
 	-- colors
 	color_scheme = cs.get_color_scheme(),
@@ -57,6 +57,7 @@ local config = {
 	native_macos_fullscreen_mode = false,
 	window_close_confirmation = "NeverPrompt",
 	window_decorations = "RESIZE",
+	-- default_cursor_style = "BlinkingBlock",
 
 	-- keys
 	keys = {
