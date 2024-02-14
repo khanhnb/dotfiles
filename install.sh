@@ -9,6 +9,9 @@ rm ~/.tmux.conf
 rm ~/.gitconfig
 rm -rf ~/.config/yabai
 rm -rf ~/.config/skhd
+rm -rf ~/.config/starship.toml
+rm -rf ~/.config/neofetch
+
 ln -s $(pwd)/nvim ~/.config/nvim
 ln -s $(pwd)/fish ~/.config/fish
 ln -s $(pwd)/alacritty ~/.config/alacritty
@@ -18,3 +21,5 @@ ln -s $(pwd)/yabai ~/.config/yabai
 ln -s $(pwd)/skhd ~/.config/skhd
 ln -s $(pwd)/karabiner ~/.config/karabiner
 ln -s $(pwd)/.gitconfig ~/.gitconfig
+ln -s $(pwd)/starship.toml ~/.config/starship.toml
+ln -s $(pwd)/neofetch ~/.config/neofetch

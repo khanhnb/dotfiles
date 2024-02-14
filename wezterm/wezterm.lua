@@ -18,7 +18,7 @@ local w = require("utils/wallpaper")
 local wezterm = require("wezterm")
 -- local act = wezterm.action
 
-wezterm.time.call_after(600, function()
+wezterm.time.call_after(3600, function()
 	wezterm.reload_configuration()
 end)
 

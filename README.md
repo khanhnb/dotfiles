@@ -6,7 +6,7 @@ Install requirements:
 ```
 brew tap homebrew/cask-fonts
 brew install font-geist-mono-nerd-font font-jetbrains-mono-nerd-font font-fira-code-nerd-font
-brew install neovim tmux fish starship zoxide koekeishiya/formulae/skhd koekeishiya/formulae/yabai fzf ripgrep wezterm
+brew install neovim tmux fish starship zoxide koekeishiya/formulae/skhd koekeishiya/formulae/yabai fzf ripgrep wezterm neofetch
 ```
 
 To disable desktop rearrangement:
