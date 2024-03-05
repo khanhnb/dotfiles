@@ -244,9 +244,9 @@ require('lazy').setup({
         lualine_b = { 'branch', 'diff', { 'diagnostics', symbols = { error = 'E', warn = 'W', info = 'I', hint = 'H' }, } },
         -- lualine_b = { 'FugitiveHead'},
         -- lualine_c = { 'buffers' },
-        -- lualine_c = { 'filename' },
-        lualine_c = { '%=', 'buffers' },
-        lualine_x = {'encoding', 'fileformat', 'filetype'},
+        lualine_c = { { 'filename', path = 2, file_status = true, } },
+        -- lualine_c = { '%=', 'buffers' },
+        lualine_x = { 'encoding', 'fileformat', 'filetype' },
         lualine_y = { 'progress' },
         lualine_z = { 'location' }
       },

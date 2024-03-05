@@ -44,8 +44,8 @@ return {
     opts = {
       -- settings without a patched font or icons
       icons = false,
-      fold_open = "v",    -- icon used for open folds
-      fold_closed = ">",  -- icon used for closed folds
+      fold_open = "v",      -- icon used for open folds
+      fold_closed = ">",    -- icon used for closed folds
       indent_lines = false, -- add an indent guide below the fold icons
       signs = {
         -- icons / text used for a diagnostic
@@ -56,5 +56,25 @@ return {
       },
       use_diagnostic_signs = false -- enabling this will use the signs defined in your lsp client
     },
-  }
+  },
+  { 'folke/todo-comments.nvim', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
+  { -- Autoformat
+    'stevearc/conform.nvim',
+    opts = {
+      notify_on_error = false,
+      format_on_save = {
+        timeout_ms = 500,
+        lsp_fallback = true,
+      },
+      formatters_by_ft = {
+        lua = { 'stylua' },
+        -- Conform can also run multiple formatters sequentially
+        -- python = { "isort", "black" },
+        --
+        -- You can use a sub-list to tell conform to run *until* a formatter
+        -- is found.
+        javascript = { { "prettierd", "prettier" } },
+      },
+    },
+  },
 }

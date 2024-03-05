@@ -4,7 +4,7 @@ local M = {}
 
 M.get_font = function()
 	local fonts = {
-		-- "JetBrainsMono Nerd Font Mono",
+		-- "JetBrainsMono Nerd Font",
 		-- "FiraCode Nerd Font",
 		"GeistMono Nerd Font",
 	}
