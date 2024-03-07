@@ -1,10 +1,11 @@
 vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
 -- git
-vim.keymap.set('n', '<leader>gs', ':0G<CR>', {desc = 'Git status'})
-vim.keymap.set('n', '<leader>gb', require('gitsigns').blame_line, {desc = 'Git blame a line'})
-vim.keymap.set("n", "<leader>gc", ":Git commit -m \"", {noremap=false})
-vim.keymap.set("n", "<leader>gP", ":Git push -u origin HEAD<CR>", {noremap=false})
-vim.keymap.set("n", "<leader>gp", ":Git pull<CR>", {noremap=false})
+vim.keymap.set('n', '<leader>gs', ':0G<CR>', { desc = 'Git status' })
+vim.keymap.set('n', '<leader>gb', require('gitsigns').blame_line, { desc = 'Git blame a line' })
+vim.keymap.set("n", "<leader>gc", ":Git commit -m \"", { noremap = false })
+vim.keymap.set("n", "<leader>gP", ":Git push -u origin HEAD<CR>", { noremap = false })
+vim.keymap.set("n", "<leader>gp", ":Git pull<CR>", { noremap = false })
+vim.keymap.set("n", "<leader>gl", ":Git lg<CR>", { noremap = false })
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -107,9 +108,11 @@ vim.keymap.set('n', '<leader><leader>', ':source ~/.config/nvim/init.lua<CR>', {
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 
 -- trouble
-vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end, {desc = "Toggle Trouble"})
-vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end, {desc = "Trouble Workspace"})
-vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end, {desc = "Trouble Document Diagnostics"})
-vim.keymap.set("n", "<leader>xq", function() require("trouble").toggle("quickfix") end, {desc = "Trouble Quickfix"})
-vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist") end, {desc = "Trouble Loclist"})
-vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end, {desc = "Trouble LSP References"})
+vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end, { desc = "Toggle Trouble" })
+vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end,
+    { desc = "Trouble Workspace" })
+vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end,
+    { desc = "Trouble Document Diagnostics" })
+vim.keymap.set("n", "<leader>xq", function() require("trouble").toggle("quickfix") end, { desc = "Trouble Quickfix" })
+vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist") end, { desc = "Trouble Loclist" })
+vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end, { desc = "Trouble LSP References" })
