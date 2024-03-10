@@ -1,5 +1,5 @@
 -- dont use system's clipboard
-vim.o.clipboard = ''
+vim.o.clipboard = ""
 vim.o.nu = true
 vim.o.relativenumber = true
 
@@ -38,42 +38,39 @@ vim.g.netrw_winsize = 25
 
 vim.opt.list = true
 -- vim.opt.listchars:append "space:⋅"
-vim.opt.listchars:append "eol:↵"
+vim.opt.listchars:append("eol:↵")
 vim.opt.guicursor = ""
 
 -- lsp round border
 local _border = "rounded"
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-  vim.lsp.handlers.hover, {
-    border = _border
-  }
-)
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+	border = _border,
+})
 
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-  vim.lsp.handlers.signature_help, {
-    border = _border
-  }
-)
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+	border = _border,
+})
 
-vim.diagnostic.config {
-  float = { border = _border }
+vim.diagnostic.config({
+	float = { border = _border },
+})
+
+require("lspconfig.ui.windows").default_options = {
+	border = _border,
 }
 
-require('lspconfig.ui.windows').default_options = {
-  border = _border
-}
-
-vim.cmd.colorscheme "catppuccin"
+vim.cmd.colorscheme("catppuccin")
 
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-vim.opt.foldenable = false;
-vim.opt.foldlevel = 0;
+vim.opt.foldenable = false
+vim.opt.foldlevel = 0
 
-require('ts_context_commentstring').setup {
-  enable_autocmd = false,
-}
+-- require('ts_context_commentstring').setup {
+--   enable_autocmd = false,
+-- }
 
-vim.opt.spelllang = 'en_us'
+vim.opt.spelllang = "en_us"
 -- vim.opt.spell = true
+--
