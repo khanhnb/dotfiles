@@ -161,6 +161,12 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 -- Diagnostic keymaps
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
+vim.keymap.set("n", "]e", function()
+	vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
+end, { desc = "Go to next [D]iagnostic message" })
+vim.keymap.set("n", "[e", function()
+	vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
+end, { desc = "Go to previous [D]iagnostic message" })
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
@@ -235,7 +241,7 @@ require("lazy").setup({
 	--    require('Comment').setup({})
 
 	-- "gc" to comment visual regions/lines
-	{ "numToStr/Comment.nvim", opts = {} },
+	-- { "numToStr/Comment.nvim", opts = {} },
 
 	-- Here is a more advanced example where we pass configuration
 	-- options to `gitsigns.nvim`. This is equivalent to the following lua:
@@ -349,11 +355,11 @@ require("lazy").setup({
 					--     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
 					--   },
 					-- layout_strategy = 'horizontal',
-					layout_config = {
-						width = 0.9,
-						height = 0.9,
-						preview_width = 0.65,
-					},
+					-- layout_config = {
+					-- 	width = 0.9,
+					-- 	height = 0.9,
+					-- 	preview_width = 0.65,
+					-- },
 				},
 				-- pickers = { },
 				extensions = {
@@ -499,19 +505,36 @@ require("lazy").setup({
 					-- Jump to the definition of the word under your cursor.
 					--  This is where a variable was first declared, or where a function is defined, etc.
 					--  To jump back, press <C-T>.
-					map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
+					-- map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
+					map("gd", function()
+						require("trouble").toggle("lsp_definitions")
+					end, "[G]oto [D]efinition")
+					map("gD", "<cmd>Lspsaga finder<CR>", "[G]oto [D]efinition")
 
 					-- Find references for the word under your cursor.
-					map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+					-- map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+					map("gr", function()
+						require("trouble").toggle("lsp_references")
+					end, "[G]oto [R]eferences")
+					map("gR", "<cmd>Lspsaga outgoing_calls<CR>", "[G]oto [R]eferences")
+
+					-- signature help
+					vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, { desc = "signature_help" })
 
 					-- Jump to the implementation of the word under your cursor.
 					--  Useful when your language has ways of declaring types without an actual implementation.
-					map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
+					-- map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
+					map("gI", function()
+						require("trouble").toggle("lsp_implementations")
+					end, "[G]oto [I]mplementation")
 
 					-- Jump to the type of the word under your cursor.
 					--  Useful when you're not sure what type a variable is and you want to see
 					--  the definition of its *type*, not where it was *defined*.
-					map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
+					-- map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
+					map("<leader>D", function()
+						require("trouble").toggle("lsp_type_definitions")
+					end, "Type [D]efinition")
 
 					-- Fuzzy find all the symbols in your current document.
 					--  Symbols are things like variables, functions, types, etc.
@@ -531,7 +554,8 @@ require("lazy").setup({
 
 					-- Execute a code action, usually your cursor needs to be on top of an error
 					-- or a suggestion from your LSP for this to activate.
-					map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+					-- map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+					map("<leader>ca", "<cmd>Lspsaga code_action<CR>", "[C]ode [A]ction")
 
 					-- Opens a popup that displays documentation about the word under your cursor
 					--  See `:help K` for why this keymap
@@ -539,7 +563,7 @@ require("lazy").setup({
 
 					-- WARN: This is not Goto Definition, this is Goto Declaration.
 					--  For example, in C this would take you to the header
-					map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+					-- map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
 					-- The following two autocommands are used to highlight references of the
 					-- word under your cursor when your cursor rests there for a little while.
@@ -677,6 +701,7 @@ require("lazy").setup({
 			-- Snippet Engine & its associated nvim-cmp source
 			{
 				"L3MON4D3/LuaSnip",
+				dependencies = { "rafamadriz/friendly-snippets" },
 				build = (function()
 					-- Build Step is needed for regex support in snippets
 					-- This step is not supported in many windows environments
@@ -740,6 +765,12 @@ require("lazy").setup({
 			-- See `:help cmp`
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
+			require("luasnip.loaders.from_vscode").lazy_load({})
+			-- load custom snippets
+			require("luasnip.loaders.from_vscode").lazy_load({
+				paths = { "./lua/custom/custom_snippets" },
+			})
+			luasnip.filetype_extend("typescriptreact", { "html" })
 			luasnip.config.setup({})
 
 			cmp.setup({
@@ -829,7 +860,7 @@ require("lazy").setup({
 		name = "catppuccin",
 		priority = 1000,
 		opts = {
-			flavour = "mocha", -- latte, frappe, macchiato, mocha
+			flavour = "frappe", -- latte, frappe, macchiato, mocha
 			-- flavour = require('../wezterm/utils/helpers.lua').is_dark() and "mocha" or "frappe",
 			transparent_background = true, -- disables setting the background color.
 			-- background = {
@@ -902,6 +933,10 @@ require("lazy").setup({
 	{ -- Highlight, edit, and navigate code
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter-textobjects",
+			"JoosepAlviste/nvim-ts-context-commentstring",
+		},
 		config = function()
 			-- [[ Configure Treesitter ]] See `:help nvim-treesitter`
 
@@ -920,11 +955,73 @@ require("lazy").setup({
 					"java",
 					"typescript",
 					"solidity",
+					"markdown",
+					"markdown_inline",
 				},
 				-- Autoinstall languages that are not installed
 				auto_install = true,
+				disable = function(lang, buf)
+					local max_filesize = 100 * 1024 -- 100 KB
+					local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+					if ok and stats and stats.size > max_filesize then
+						return true
+					end
+				end,
 				highlight = { enable = true },
 				indent = { enable = true },
+				incremental_selection = {
+					enable = true,
+					keymaps = {
+						init_selection = "<c-space>",
+						node_incremental = "<c-space>",
+						scope_incremental = "<c-s>",
+						node_decremental = "<M-space>",
+					},
+				},
+				textobjects = {
+					select = {
+						enable = true,
+						lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
+						keymaps = {
+							-- You can use the capture groups defined in textobjects.scm
+							["aa"] = "@parameter.outer",
+							["ia"] = "@parameter.inner",
+							["af"] = "@function.outer",
+							["if"] = "@function.inner",
+							["ac"] = "@class.outer",
+							["ic"] = "@class.inner",
+						},
+					},
+					move = {
+						enable = true,
+						set_jumps = true, -- whether to set jumps in the jumplist
+						goto_next_start = {
+							["]m"] = "@function.outer",
+							["]]"] = "@class.outer",
+						},
+						goto_next_end = {
+							["]M"] = "@function.outer",
+							["]["] = "@class.outer",
+						},
+						goto_previous_start = {
+							["[m"] = "@function.outer",
+							["[["] = "@class.outer",
+						},
+						goto_previous_end = {
+							["[M"] = "@function.outer",
+							["[]"] = "@class.outer",
+						},
+					},
+					swap = {
+						enable = true,
+						swap_next = {
+							["<leader>a"] = "@parameter.inner",
+						},
+						swap_previous = {
+							["<leader>A"] = "@parameter.inner",
+						},
+					},
+				},
 			})
 
 			-- There are additional nvim-treesitter modules that you can use to interact
