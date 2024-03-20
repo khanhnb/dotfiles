@@ -25,7 +25,7 @@ vim.o.termguicolors = true
 vim.o.scrolloff = 8
 vim.o.signcolumn = "yes"
 
-vim.o.colorcolumn = "80"
+vim.o.colorcolumn = "120"
 
 -- cursorline - underline
 vim.o.cursorline = true
@@ -74,4 +74,3 @@ vim.opt.foldlevel = 0
 vim.opt.spelllang = "en_us"
 -- vim.opt.spell = true
 --
-vim.lsp.set_log_level("debug")

@@ -601,6 +601,38 @@ require("lazy").setup({
 			--  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
 			--  - settings (table): Override the default settings passed when initializing the server.
 			--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+			local function rename_file()
+				local source_file, target_file
+
+				vim.ui.input({
+					prompt = "Source : ",
+					completion = "file",
+					default = vim.api.nvim_buf_get_name(0),
+				}, function(input)
+					source_file = input
+				end)
+				vim.ui.input({
+					prompt = "Target : ",
+					completion = "file",
+					default = source_file,
+				}, function(input)
+					target_file = input
+				end)
+
+				local params = {
+					command = "_typescript.applyRenameFile",
+					arguments = {
+						{
+							sourceUri = source_file,
+							targetUri = target_file,
+						},
+					},
+					title = "",
+				}
+
+				vim.lsp.util.rename(source_file, target_file)
+				vim.lsp.buf.execute_command(params)
+			end
 			local servers = {
 				-- clangd = {},
 				-- gopls = {},
@@ -612,7 +644,14 @@ require("lazy").setup({
 				--    https://github.com/pmizio/typescript-tools.nvim
 				--
 				-- But for many setups, the LSP (`tsserver`) will work just fine
-				-- tsserver = {},
+				tsserver = {
+					commands = {
+						RenameFile = {
+							rename_file,
+							description = "Rename File",
+						},
+					},
+				},
 				--
 
 				lua_ls = {
@@ -772,6 +811,7 @@ require("lazy").setup({
 			})
 			luasnip.filetype_extend("typescriptreact", { "html" })
 			luasnip.config.setup({})
+			local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
 			cmp.setup({
 				snippet = {
@@ -785,11 +825,12 @@ require("lazy").setup({
 				-- chosen, you will need to read `:help ins-completion`
 				--
 				-- No, but seriously. Please read `:help ins-completion`, it is really good!
+				-- local cmp_select = { behavior = cmp.SelectBehavior.Select }
 				mapping = cmp.mapping.preset.insert({
 					-- Select the [n]ext item
-					["<C-n>"] = cmp.mapping.select_next_item(),
+					["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
 					-- Select the [p]revious item
-					["<C-p>"] = cmp.mapping.select_prev_item(),
+					["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
 
 					-- Accept ([y]es) the completion.
 					--  This will auto-import if your LSP supports it.
