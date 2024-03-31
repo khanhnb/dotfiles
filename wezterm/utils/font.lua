@@ -9,7 +9,10 @@ M.get_font = function()
 		"GeistMono Nerd Font",
 	}
 	local family = h.get_random_entry(fonts)
-	return wezterm.font_with_fallback({ { family = family, weight = "Medium" }, { family = 'JetBrains Mono', weight = 'Medium' }, })
+	return wezterm.font_with_fallback({
+		{ family = family, weight = "Medium" },
+		{ family = "JetBrains Mono", weight = "Medium" },
+	})
 end
 
 return M
