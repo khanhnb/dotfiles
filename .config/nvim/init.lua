@@ -351,6 +351,7 @@ require("lazy").setup({
 				--  All the info you're looking for is in `:help telescope.setup()`
 				--
 				defaults = {
+          path_display = {"smart"},
 					--   mappings = {
 					--     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
 					--   },

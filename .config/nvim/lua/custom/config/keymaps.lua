@@ -127,3 +127,6 @@ end, { desc = "Trouble Loclist" })
 vim.keymap.set("n", "gR", function()
 	require("trouble").toggle("lsp_references")
 end, { desc = "Trouble LSP References" })
+
+-- oil.nvim
+vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })

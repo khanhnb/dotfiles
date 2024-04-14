@@ -39,9 +39,9 @@ local config = {
 
 	-- padding
 	window_padding = {
-		left = 20,
-		right = 20,
-		top = 10,
+		left = 2,
+		right = 2,
+		top = 0,
 		bottom = 0,
 	},
 
@@ -54,11 +54,15 @@ local config = {
 	-- disable_default_key_bindings = true,
 	adjust_window_size_when_changing_font_size = false,
 	debug_key_events = false,
-	enable_tab_bar = false,
+	enable_tab_bar = true,
+	tab_bar_at_bottom = false,
+	use_fancy_tab_bar = false,
 	native_macos_fullscreen_mode = false,
 	window_close_confirmation = "NeverPrompt",
 	window_decorations = "RESIZE",
+	-- window_decorations = "TITLE",
 	-- default_cursor_style = "BlinkingBlock",
+	--
 
 	-- keys
 	keys = {

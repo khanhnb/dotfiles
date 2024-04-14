@@ -53,7 +53,7 @@ return {
 		opts = {
 			-- settings without a patched font or icons
 			icons = false,
-			fold_open = "v", -- icon used for open folds
+			fold_open = "v",   -- icon used for open folds
 			fold_closed = ">", -- icon used for closed folds
 			indent_lines = false, -- add an indent guide below the fold icons
 			signs = {
@@ -141,7 +141,7 @@ return {
 		end,
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter", -- optional
-			"nvim-tree/nvim-web-devicons", -- optional
+			"nvim-tree/nvim-web-devicons",  -- optional
 		},
 	},
 	{
@@ -151,9 +151,17 @@ return {
 			options = {
 				custom_commentstring = function()
 					return require("ts_context_commentstring.internal").calculate_commentstring()
-						or vim.bo.commentstring
+							or vim.bo.commentstring
 				end,
 			},
 		},
 	},
+	{
+		'stevearc/oil.nvim',
+		opts = {
+
+		},
+		-- Optional dependencies
+		-- dependencies = { "nvim-tree/nvim-web-devicons" },
+	}
 }
