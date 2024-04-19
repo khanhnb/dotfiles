@@ -18,4 +18,4 @@ do
 done
 
 # configure osx
-./osx/osx.sh
+# ./osx/osx.sh

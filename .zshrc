@@ -1,12 +1,12 @@
-export ZSH="$HOME/.oh-my-zsh"
+# export ZSH="$HOME/.oh-my-zsh"
 export EDITOR=nvim
 # Set the shell to zsh
 export SHELL=/bin/zsh
 
 # zsh plugins
-plugins=(git)
-ZSH_THEME="robbyrussell"
-source $ZSH/oh-my-zsh.sh
+# plugins=(git)
+# ZSH_THEME="robbyrussell"
+# source $ZSH/oh-my-zsh.sh
 source $HOME/.config/antigen/antigen.zsh
 
 antigen bundle 'zsh-users/zsh-syntax-highlighting'
@@ -37,5 +37,6 @@ eval "$(starship init zsh)"
 path+=("/opt/homebrew/bin")
 path+=("$HOME/.config/bin")
 export PATH
+export JAVA_HOME="/opt/homebrew/opt/openjdk@17"
 
 echo "zsh's config loaded"
