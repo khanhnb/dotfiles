@@ -11,12 +11,10 @@
 local b = require("utils/background")
 local cs = require("utils/color_scheme")
 local f = require("utils/font")
--- local h = require("utils/helpers")
--- local k = require("utils/keys")
 local w = require("utils/wallpaper")
 
 local wezterm = require("wezterm")
--- local act = wezterm.action
+local act = wezterm.action
 
 wezterm.time.call_after(3600, function()
 	wezterm.reload_configuration()
@@ -71,6 +69,21 @@ local config = {
 		{ key = "L", mods = "CTRL", action = wezterm.action.DisableDefaultAssignment },
 		{ key = "K", mods = "CTRL", action = wezterm.action.DisableDefaultAssignment },
 		{ key = "H", mods = "CTRL", action = wezterm.action.DisableDefaultAssignment },
+		{
+			key = 'E',
+			mods = 'CTRL|SHIFT',
+			action = act.PromptInputLine {
+				description = 'Enter new name for tab',
+				action = wezterm.action_callback(function(window, pane, line)
+					-- line will be `nil` if they hit escape without entering anything
+					-- An empty string if they just hit enter
+					-- Or the actual line of text they wrote
+					if line then
+						window:active_tab():set_title(line)
+					end
+				end),
+			},
+		},
 	},
 }
 
