@@ -407,13 +407,13 @@ require("lazy").setup({
           --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
           --   },
           -- layout_strategy = 'horizontal',
-          layout_config = {
-            horizontal = {
-              width = 0.9,
-              height = 0.9,
-              preview_width = 0.65,
-            },
-          },
+          -- layout_config = {
+          --   horizontal = {
+          --     width = 0.9,
+          --     height = 0.9,
+          --     preview_width = 0.65,
+          --   },
+          -- },
         },
         extensions = {
           ["ui-select"] = {
@@ -511,6 +511,7 @@ require("lazy").setup({
       { "williamboman/mason.nvim", config = true },
       "williamboman/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
+      "jose-elias-alvarez/typescript.nvim",
 
       -- Useful status updates for LSP.
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
@@ -566,14 +567,12 @@ require("lazy").setup({
           map("gd", function()
             require("trouble").toggle("lsp_definitions")
           end, "[G]oto [D]efinition")
-          map("gD", "<cmd>Lspsaga finder<CR>", "[G]oto [D]efinition")
 
           -- Find references for the word under your cursor.
           -- map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
           map("gr", function()
             require("trouble").toggle("lsp_references")
           end, "[G]oto [R]eferences")
-          map("gR", "<cmd>Lspsaga outgoing_calls<CR>", "[G]oto [R]eferences")
 
           -- signature help
           vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, { desc = "signature_help" })
@@ -612,7 +611,6 @@ require("lazy").setup({
           -- Execute a code action, usually your cursor needs to be on top of an error
           -- or a suggestion from your LSP for this to activate.
           map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
-          -- map("<leader>ca", "<cmd>Lspsaga code_action<CR>", "[C]ode [A]ction")
 
           -- Opens a popup that displays documentation about the word under your cursor
           --  See `:help K` for why this keymap
@@ -658,58 +656,12 @@ require("lazy").setup({
       --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
-      local function rename_file()
-        local source_file, target_file
-
-        vim.ui.input({
-          prompt = "Source : ",
-          completion = "file",
-          default = vim.api.nvim_buf_get_name(0),
-        }, function(input)
-          source_file = input
-        end)
-        vim.ui.input({
-          prompt = "Target : ",
-          completion = "file",
-          default = source_file,
-        }, function(input)
-          target_file = input
-        end)
-
-        local params = {
-          command = "_typescript.applyRenameFile",
-          arguments = {
-            {
-              sourceUri = source_file,
-              targetUri = target_file,
-            },
-          },
-          title = "",
-        }
-
-        vim.lsp.util.rename(source_file, target_file)
-        vim.lsp.buf.execute_command(params)
-      end
       local servers = {
-        -- clangd = {},
-        -- gopls = {},
-        -- pyright = {},
-        -- rust_analyzer = {},
-        -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
-        --
-        -- Some languages (like typescript) have entire language plugins that can be useful:
-        --    https://github.com/pmizio/typescript-tools.nvim
-        --
-        -- But for many setups, the LSP (`tsserver`) will work just fine
-        -- tsserver = {
-        -- 	commands = {
-        -- 		RenameFile = {
-        -- 			rename_file,
-        -- 			description = "Rename File",
-        -- 		},
-        -- 	},
-        -- },
-        --
+        clangd = {},
+        gopls = {},
+        jdtls = {},
+        rust_analyzer = {},
+        tsserver = {},
 
         lua_ls = {
           -- cmd = {...},
@@ -763,7 +715,61 @@ require("lazy").setup({
             -- by the server configuration above. Useful when disabling
             -- certain features of an LSP (for example, turning off formatting for tsserver)
             server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-            require("lspconfig")[server_name].setup(server)
+            -- print("Setup " .. server_name .. " with config: ", vim.inspect(server.settings))
+            if (server_name == "tsserver") then
+              require("typescript").setup({
+                server = { -- pass options to lspconfig's setup method
+                  on_attach = function(_, buffer)
+                    print("setup keymap for typescript")
+                    vim.keymap.set("n", "<leader>co", ":TypescriptOrganizeImports<CR>",
+                      { buffer = buffer, desc = "[C]ode action [O]rganize imports" })
+                    vim.keymap.set("n", "<leader>cr", ":TypescriptRemoveUnused<CR>",
+                      { buffer = buffer, desc = "[C]ode action [R]emove unused" })
+                    vim.keymap.set("n", "<leader>cf", ":TypescriptFixAll<CR>",
+                      { buffer = buffer, desc = "[C]ode action [F]ix all" })
+                    vim.keymap.set("n", "<leader>cR", ":TypescriptRenameFile<CR>",
+                      { desc = "[C]ode action [R]ename File", buffer = buffer })
+                    vim.keymap.set("n", "gD", ":TypescriptGoToSourceDefinition<CR>",
+                      { desc = "[G]o to source [D]efinition", buffer = buffer })
+                    vim.keymap.set("n", "<leader>ci", ":TypescriptAddMissingImports<CR>",
+                      { desc = "[C]ode action add missing [I]mports", buffer = buffer })
+                    vim.lsp.inlay_hint.enable(true)
+                  end,
+                  settings = {
+                    -- specify some or all of the following settings if you want to adjust the default behavior
+                    javascript = {
+                      inlayHints = {
+                        includeInlayEnumMemberValueHints = true,
+                        includeInlayFunctionLikeReturnTypeHints = true,
+                        includeInlayFunctionParameterTypeHints = true,
+                        includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
+                        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+                        includeInlayPropertyDeclarationTypeHints = true,
+                        includeInlayVariableTypeHints = true,
+                      },
+                    },
+                    typescript = {
+                      inlayHints = {
+                        includeInlayEnumMemberValueHints = true,
+                        includeInlayFunctionLikeReturnTypeHints = true,
+                        includeInlayFunctionParameterTypeHints = true,
+                        includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
+                        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+                        includeInlayPropertyDeclarationTypeHints = true,
+                        includeInlayVariableTypeHints = true,
+                      },
+                    },
+                  },
+                },
+                disable_commands = false, -- prevent the plugin from creating Vim commands
+                debug = false,            -- enable debug logging for commands
+                go_to_source_definition = {
+                  fallback = true,        -- fall back to standard LSP definition on failure
+                },
+              })
+            else
+              require("lspconfig")[server_name].setup(server)
+            end
           end,
         },
       })
@@ -1055,6 +1061,7 @@ require("lazy").setup({
           "solidity",
           "markdown",
           "markdown_inline",
+          "tsx"
         },
         -- Autoinstall languages that are not installed
         auto_install = true,

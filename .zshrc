@@ -2,6 +2,8 @@ export EDITOR=nvim
 # Set the shell to zsh
 export SHELL=/bin/zsh
 
+setopt inc_append_history
+
 source $HOME/.config/antigen/antigen.zsh
 
 antigen bundle 'zsh-users/zsh-syntax-highlighting'
