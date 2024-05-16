@@ -23,8 +23,16 @@ end)
 local config = {
 	-- background
 	background = {
-		-- w.get_wallpaper(),
+		w.get_wallpaper(),
 		b.get_background(),
+	},
+
+	-- colors
+	-- transparent tab_bar
+	colors = {
+		tab_bar = {
+      background = 'rgba(0,0,0,0)'
+    }
 	},
 
 	-- font

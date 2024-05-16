@@ -159,6 +159,12 @@ return {
 	{
 		'stevearc/oil.nvim',
 		opts = {
+			columns = {
+				-- "icon",
+				-- "permissions",
+				-- "size",
+				-- "mtime"
+			},
 			view_options = {
 				show_hidden = true,
 				is_hidden_file = function(name, bufnr)
@@ -185,6 +191,6 @@ return {
 			},
 		},
 		-- Optional dependencies
-		-- dependencies = { "nvim-tree/nvim-web-devicons" },
+		dependencies = { "nvim-tree/nvim-web-devicons" },
 	}
 }

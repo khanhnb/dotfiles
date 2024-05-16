@@ -28,9 +28,17 @@ done
 eval "$(starship init zsh)"
 
 # path
-path+=("/opt/homebrew/bin")
-path+=("$HOME/.config/bin")
-export PATH
+export GOPATH="$HOME/go"
 export JAVA_HOME="/opt/homebrew/opt/openjdk@17"
+export JDTLS_JVM_ARGS="-javaagent:$HOME/.local/share/java/lombok.jar"
+
+export PATH="/opt/homebrew/bin:$PATH"
+export PATH="$HOME/.config/bin:$PATH"
+export PATH="node_modules/.bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$GOPATH/bin:$PATH"
+export PATH=/opt/homebrew/opt/node@20/bin:$PATH
+# export PATH=$HOME/.asdf/shims/:$PATH
+export PATH="$PATH:$HOME/.foundry/bin"
 
 echo "zsh's config loaded"
