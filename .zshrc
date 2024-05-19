@@ -27,11 +27,14 @@ done
 
 eval "$(starship init zsh)"
 
-# path
 export GOPATH="$HOME/go"
 export JAVA_HOME="/opt/homebrew/opt/openjdk@17"
 export JDTLS_JVM_ARGS="-javaagent:$HOME/.local/share/java/lombok.jar"
+export HISTSIZE=100000000
+export SAVEHIST=$HISTSIZE
+export HISTFILE=$HOME/.local/zsh_history
 
+# path
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="$HOME/.config/bin:$PATH"
 export PATH="node_modules/.bin:$PATH"

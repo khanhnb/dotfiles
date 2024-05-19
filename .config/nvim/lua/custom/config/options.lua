@@ -19,6 +19,11 @@ vim.o.undofile = true
 
 vim.o.hlsearch = false
 vim.o.incsearch = true
+vim.o.smartcase = true
+vim.o.ignorecase = true
+vim.o.inccommand = "split"
+
+
 
 vim.o.termguicolors = true
 
@@ -60,7 +65,7 @@ require("lspconfig.ui.windows").default_options = {
 	border = _border,
 }
 
-vim.cmd.colorscheme("catppuccin")
+-- vim.cmd.colorscheme("catppuccin")
 
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"

@@ -960,34 +960,41 @@ require("lazy").setup({
     end,
   },
   {
-    "catppuccin/nvim",
-    name = "catppuccin",
+    "tjdevries/colorbuddy.nvim",
     priority = 1000,
-    opts = {
-      flavour = "frappe",            -- latte, frappe, macchiato, mocha
-      -- flavour = require('../wezterm/utils/helpers.lua').is_dark() and "mocha" or "frappe",
-      transparent_background = true, -- disables setting the background color.
-      -- background = {
-      --   light = "frappe",
-      --   dark = "mocha",
-      -- },
-      integrations = {
-        cmp = true,
-        gitsigns = true,
-        nvimtree = true,
-        treesitter = true,
-        notify = false,
-        telescope = {
-          enabled = true,
-        },
-        mini = {
-          enabled = true,
-          indentscope_color = "",
-        },
-        -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
-      },
-    },
+    config = function()
+      vim.cmd.colorscheme "gruvbuddy"
+    end,
   },
+  -- {
+  --   "catppuccin/nvim",
+  --   name = "catppuccin",
+  --   priority = 1000,
+  --   opts = {
+  --     flavour = "frappe",            -- latte, frappe, macchiato, mocha
+  --     -- flavour = require('../wezterm/utils/helpers.lua').is_dark() and "mocha" or "frappe",
+  --     transparent_background = true, -- disables setting the background color.
+  --     -- background = {
+  --     --   light = "frappe",
+  --     --   dark = "mocha",
+  --     -- },
+  --     integrations = {
+  --       cmp = true,
+  --       gitsigns = true,
+  --       nvimtree = true,
+  --       treesitter = true,
+  --       notify = false,
+  --       telescope = {
+  --         enabled = true,
+  --       },
+  --       mini = {
+  --         enabled = true,
+  --         indentscope_color = "",
+  --       },
+  --       -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
+  --     },
+  --   },
+  -- },
   -- Highlight todo, notes, etc in comments
   {
     "folke/todo-comments.nvim",
@@ -1017,23 +1024,28 @@ require("lazy").setup({
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,
       --  and try some other statusline plugin
-      local statusline = require("mini.statusline")
-      -- set use_icons to true if you have a Nerd Font
-      statusline.setup({ use_icons = vim.g.have_nerd_font })
-
-      -- You can configure sections in the statusline by overriding their
-      -- default behavior. For example, here we set the section for
-      -- cursor location to LINE:COLUMN
-      ---@diagnostic disable-next-line: duplicate-set-field
-      statusline.section_location = function()
-        return "%2l:%-2v"
-      end
+      -- local statusline = require("mini.statusline")
+      -- -- set use_icons to true if you have a Nerd Font
+      -- statusline.setup({ use_icons = vim.g.have_nerd_font })
+      --
+      -- -- You can configure sections in the statusline by overriding their
+      -- -- default behavior. For example, here we set the section for
+      -- -- cursor location to LINE:COLUMN
+      -- ---@diagnostic disable-next-line: duplicate-set-field
+      -- statusline.section_location = function()
+      --   return "%2l:%-2v"
+      -- end
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
     end,
   },
-
+  {
+    "tjdevries/express_line.nvim",
+    config = function()
+      require("custom.statusline").setup()
+    end,
+  },
   { -- Highlight, edit, and navigate code
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",

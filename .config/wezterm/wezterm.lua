@@ -16,9 +16,9 @@ local w = require("utils/wallpaper")
 local wezterm = require("wezterm")
 local act = wezterm.action
 
-wezterm.time.call_after(3600, function()
-	wezterm.reload_configuration()
-end)
+-- wezterm.time.call_after(3600, function()
+-- 	wezterm.reload_configuration()
+-- end)
 
 local config = {
 	-- background
@@ -31,8 +31,8 @@ local config = {
 	-- transparent tab_bar
 	colors = {
 		tab_bar = {
-      background = 'rgba(0,0,0,0)'
-    }
+			background = 'rgba(0,0,0,0)'
+		}
 	},
 
 	-- font
