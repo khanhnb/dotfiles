@@ -67,10 +67,18 @@ vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldenable = false
 vim.opt.foldlevel = 0
 
--- require('ts_context_commentstring').setup {
---   enable_autocmd = false,
--- }
-
 vim.opt.spelllang = "en_us"
 -- vim.opt.spell = true
 --
+-- copy remote clipboard to local clipboard through osc52
+vim.g.clipboard = {
+  name = 'OSC 52',
+  copy = {
+    ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+    ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+  },
+  paste = {
+    ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+    ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+  },
+}

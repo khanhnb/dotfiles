@@ -23,7 +23,7 @@ end)
 local config = {
 	-- background
 	background = {
-		w.get_wallpaper(),
+		-- w.get_wallpaper(),
 		b.get_background(),
 	},
 
@@ -67,8 +67,7 @@ local config = {
 	window_close_confirmation = "NeverPrompt",
 	window_decorations = "RESIZE",
 	-- window_decorations = "TITLE",
-	-- default_cursor_style = "BlinkingBlock",
-	--
+	default_cursor_style = "SteadyBlock",
 
 	-- keys
 	keys = {
@@ -79,7 +78,7 @@ local config = {
 		{ key = "H", mods = "CTRL", action = wezterm.action.DisableDefaultAssignment },
 		{
 			key = 'E',
-			mods = 'CTRL|SHIFT',
+			mods = 'SUPER|SHIFT',
 			action = act.PromptInputLine {
 				description = 'Enter new name for tab',
 				action = wezterm.action_callback(function(window, pane, line)
