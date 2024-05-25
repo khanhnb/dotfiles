@@ -1190,6 +1190,9 @@ require("lazy").setup({
   },
 })
 
+-- disable deprecation warning at startup
+---@diagnostic disable-next-line: duplicate-set-field
+vim.deprecate = function() end
 require("custom.config")
 
 -- The line beneath this is called `modeline`. See `:help modeline`
