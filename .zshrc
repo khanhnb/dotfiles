@@ -14,7 +14,6 @@ antigen bundle 'agkozak/zsh-z'
 antigen theme robbyrussell
 antigen apply
 
-
 # use block cursor
 ZVM_CURSOR_STYLE_ENABLED=false
 

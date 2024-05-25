@@ -1,5 +1,4 @@
 # alias
-alias s='source ~/.zshrc'
 alias ls="ls -p -G"
 alias la="ls -A"
 alias ll="ls -lah"
