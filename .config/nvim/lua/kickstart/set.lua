@@ -23,8 +23,6 @@ vim.o.smartcase = true
 vim.o.ignorecase = true
 vim.o.inccommand = "split"
 
-
-
 vim.o.termguicolors = true
 
 vim.o.scrolloff = 8
@@ -47,25 +45,23 @@ vim.opt.listchars:append("eol:↵")
 vim.opt.guicursor = ""
 
 -- lsp round border
-local _border = "rounded"
-
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-	border = _border,
-})
-
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-	border = _border,
-})
-
-vim.diagnostic.config({
-	float = { border = _border },
-})
-
-require("lspconfig.ui.windows").default_options = {
-	border = _border,
-}
-
--- vim.cmd.colorscheme("catppuccin")
+-- local _border = "rounded"
+--
+-- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+-- 	border = _border,
+-- })
+--
+-- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+-- 	border = _border,
+-- })
+--
+-- vim.diagnostic.config({
+-- 	float = { border = _border },
+-- })
+--
+-- require("lspconfig.ui.windows").default_options = {
+-- 	border = _border,
+-- }
 
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
