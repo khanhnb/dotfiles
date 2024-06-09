@@ -20,28 +20,16 @@ return { -- LSP Configuration & Plugins
           vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
         end
         -- map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
-        map("gd", function()
-          require("trouble").toggle("lsp_definitions")
-        end, "[G]oto [D]efinition")
 
         -- Find references for the word under your cursor.
         -- map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
-        map("gr", function()
-          require("trouble").toggle("lsp_references")
-        end, "[G]oto [R]eferences")
 
         -- signature help
         vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, { desc = "signature_help" })
 
         -- map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
-        map("gI", function()
-          require("trouble").toggle("lsp_implementations")
-        end, "[G]oto [I]mplementation")
 
         -- map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
-        map("<leader>D", function()
-          require("trouble").toggle("lsp_type_definitions")
-        end, "Type [D]efinition")
 
         -- Fuzzy find all the symbols in your current document.
         --  Symbols are things like variables, functions, types, etc.

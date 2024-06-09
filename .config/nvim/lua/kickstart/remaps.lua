@@ -65,3 +65,7 @@ vim.keymap.set("n", "[e", function()
 end, { desc = "Go to previous [E]rror message" })
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+
+-- LSP
+vim.keymap.set("n", "<leader>lr", vim.cmd.LspRestart, {desc = "[L]SP [R]estart"})
+

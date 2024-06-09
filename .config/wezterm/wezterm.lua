@@ -23,7 +23,7 @@ local act = wezterm.action
 local config = {
 	-- background
 	background = {
-		-- w.get_wallpaper(),
+		w.get_wallpaper(),
 		b.get_background(),
 	},
 
