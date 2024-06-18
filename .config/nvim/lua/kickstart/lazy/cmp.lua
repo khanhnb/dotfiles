@@ -141,17 +141,17 @@ return { -- Autocompletion
         { name = "path" },
         { name = "copilot", group_index = 1, priority = 100 },
       },
-      -- window = {
-      -- 	completion = {
-      -- 		border = "rounded",
-      -- 		-- transparent completion window
-      -- 		-- https://github.com/hrsh7th/nvim-cmp/discussions/1200
-      -- 		winhighlight = "Normal:CmpNormal",
-      -- 	},
-      -- 	documentation = {
-      -- 		border = "rounded",
-      -- 	},
-      -- },
+      window = {
+        completion = {
+          border = "rounded",
+          -- transparent completion window
+          -- https://github.com/hrsh7th/nvim-cmp/discussions/1200
+          -- winhighlight = "Normal:CmpNormal",
+        },
+        documentation = {
+          border = "rounded",
+        },
+      },
       formatting = {
         format = require("lspkind").cmp_format({
           with_text = true,
