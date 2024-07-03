@@ -13,8 +13,8 @@ M.get_background = function()
 		},
 		width = "100%",
 		height = "100%",
-		opacity = h.is_dark() and 0.8 or 1,
-		-- opacity = 1,
+		-- opacity = h.is_dark() and 0.8 or 1,
+		opacity = 1,
 	}
 end
 

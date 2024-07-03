@@ -6,13 +6,14 @@ M.get_font = function()
 	local fonts = {
 		-- "JetBrainsMono Nerd Font",
 		-- "UbuntuMono Nerd Font",
-		"FiraCode Nerd Font",
+		-- "FiraCode Nerd Font",
+		"Fira Mono",
 		-- "GeistMono Nerd Font",
 	}
 	local family = h.get_random_entry(fonts)
 	return wezterm.font_with_fallback({
 		-- { family = family, weight = "Regular" },
-		{ family = family, weight = 450 },
+		{ family = family, weight = 400 },
 		{ family = "JetBrains Mono", weight = "Medium" },
 	})
 end
