@@ -98,6 +98,11 @@ local config = {
         end),
       },
     },
+    {
+      key = 'w',
+      mods = 'SUPER',
+      action = wezterm.action.CloseCurrentTab { confirm = true },
+    },
   },
 }
 

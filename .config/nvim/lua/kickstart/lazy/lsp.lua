@@ -111,6 +111,7 @@ return { -- LSP Configuration & Plugins
       jdtls = {},
       rust_analyzer = {},
       tsserver = {},
+      solidity_ls_nomicfoundation = {},
 
       lua_ls = {
         -- cmd = {...},
@@ -169,7 +170,6 @@ return { -- LSP Configuration & Plugins
             require("typescript").setup({
               server = { -- pass options to lspconfig's setup method
                 on_attach = function(_, buffer)
-                  print("setup keymap for typescript")
                   vim.keymap.set("n", "<leader>co", ":TypescriptOrganizeImports<CR>",
                     { buffer = buffer, desc = "[C]ode action [O]rganize imports" })
                   vim.keymap.set("n", "<leader>cr", ":TypescriptRemoveUnused<CR>",
@@ -182,7 +182,7 @@ return { -- LSP Configuration & Plugins
                     { desc = "[G]o to source [D]efinition", buffer = buffer })
                   vim.keymap.set("n", "<leader>ci", ":TypescriptAddMissingImports<CR>",
                     { desc = "[C]ode action add missing [I]mports", buffer = buffer })
-                  vim.lsp.inlay_hint.enable(true)
+                  -- vim.lsp.inlay_hint.enable(true)
                 end,
                 settings = {
                   -- specify some or all of the following settings if you want to adjust the default behavior

@@ -7,7 +7,7 @@ M.get_font = function()
 		-- "JetBrainsMono Nerd Font",
 		-- "UbuntuMono Nerd Font",
 		-- "FiraCode Nerd Font",
-		"Fira Mono",
+		"FiraMono Nerd Font",
 		-- "GeistMono Nerd Font",
 	}
 	local family = h.get_random_entry(fonts)

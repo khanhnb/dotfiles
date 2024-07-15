@@ -1,11 +1,11 @@
-function SetTransparentColorscheme(color)
-  color = color or "rose-pine-moon"
-  vim.cmd.colorscheme(color)
-
-  vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-  vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-  -- vim.api.nvim_set_hl(0, "LspInlayHint", { bg = "none" })
-end
+-- function SetTransparentColorscheme(color)
+--   color = color or "rose-pine-moon"
+--   vim.cmd.colorscheme(color)
+--
+--   vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+--   vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+--   -- vim.api.nvim_set_hl(0, "LspInlayHint", { bg = "none" })
+-- end
 
 return {
   {
@@ -37,8 +37,7 @@ return {
     name = "rose-pine",
     config = function()
       require('rose-pine').setup({
-        disable_background = true,
-        -- disable_background = false,
+        disable_background = false,
         styles = {
           italic = false,
         },
@@ -49,8 +48,13 @@ return {
   {
     "tjdevries/colorbuddy.nvim",
     config = function()
-      vim.cmd.colorscheme("gruvbuddy")
-      -- SetTransparentColorscheme("gruvbuddy")
+      require('colorbuddy').setup({
+        styles = {
+          italic = false,
+        },
+        vim.cmd.colorscheme("custom-gruvbuddy"),
+        -- SetTransparentColorscheme("gruvbuddy")
+      })
     end
   },
   -- {
