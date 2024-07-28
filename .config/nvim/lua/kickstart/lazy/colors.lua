@@ -42,7 +42,7 @@ return {
           italic = false,
         },
       })
-      -- vim.cmd.colorscheme("rose-pine")
+      vim.cmd.colorscheme("rose-pine")
     end
   },
   {
@@ -52,7 +52,7 @@ return {
         styles = {
           italic = false,
         },
-        vim.cmd.colorscheme("custom-gruvbuddy"),
+        -- vim.cmd.colorscheme("custom-gruvbuddy"),
         -- SetTransparentColorscheme("gruvbuddy")
       })
     end
