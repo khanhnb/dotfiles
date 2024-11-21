@@ -1,5 +1,6 @@
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>pv", vim.cmd.Oil)
+-- vim.keymap.set("n", "<leader>pv", vim.cmd.Oil)
+vim.keymap.set("n", "-", vim.cmd.Oil)
 
 -- some remaps from ThePrimagen
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")

@@ -15,7 +15,7 @@ return {
           groups = {
             { "filename", format = "{file_icon} {basename:Title} {count}" },
           },
-          -- format = "{severity_icon} {message:md} {item.source} {hl:Comment}({code}){hl} {pos}",
+          format = "{severity_icon} {message:md} {item.source} {hl:Comment}({code}){hl} {pos}",
         },
         lsp_base = {
           auto_refresh = false,
@@ -24,15 +24,13 @@ return {
           },
           -- format = "{text:ts} {item.client:Comment} {pos}",
         },
-        lsp_references = {
-          -- auto_jump = false,
-        },
       },
     })
     -- trouble keymaps
     vim.keymap.set("n", "<leader>xx", function()
       require("trouble").toggle("diagnostics")
     end, { desc = "Toggle Trouble" })
+
     vim.keymap.set("n", "]t", function()
       require("trouble").next({ skip_groups = true, jump = true });
     end)
@@ -63,9 +61,11 @@ return {
     -- vim.keymap.set("n", "<leader>xd", function()
     --   require("trouble").toggle("document_diagnostics")
     -- end, { desc = "Trouble Document Diagnostics" })
+
     vim.keymap.set("n", "<leader>xq", function()
       require("trouble").toggle("quickfix")
     end, { desc = "Trouble Quickfix" })
+
     vim.keymap.set("n", "<leader>xl", function()
       require("trouble").toggle("loclist")
     end, { desc = "Trouble Loclist" })

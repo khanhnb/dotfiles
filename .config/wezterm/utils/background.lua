@@ -7,8 +7,9 @@ M.get_background = function()
 			Gradient = {
 				-- default mocha and latte backgound colors
 				-- colors = { h.is_dark() and "#1e1e2e" or "#eff1f5" },
-				colors = { h.is_dark() and "#111111" or "#eff1f5" },
-				-- colors = { h.is_dark() and "#000000" or "#eff1f5" },
+				-- colors = { h.is_dark() and "#1e2323" or "#eff1f5" },
+				-- colors = { h.is_dark() and "#111111" or "#eff1f5" },
+				colors = { h.is_dark() and "#000000" or "#eff1f5" },
 			},
 		},
 		width = "100%",

@@ -28,7 +28,7 @@ vim.o.termguicolors = true
 vim.o.scrolloff = 8
 vim.o.signcolumn = "yes"
 
-vim.o.colorcolumn = "120"
+vim.o.colorcolumn = "80"
 
 -- cursorline - underline
 vim.o.cursorline = true
@@ -90,3 +90,6 @@ vim.g.clipboard = {
     ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
   },
 }
+
+-- disable deprecation messages at startup
+vim.deprecate = function() end

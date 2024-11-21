@@ -1,10 +1,17 @@
 return {
   'nvim-telescope/telescope.nvim',
-  tag = '0.1.6',
+  tag = '0.1.8',
   -- or                              , branch = '0.1.x',
   dependencies = { 'nvim-lua/plenary.nvim' },
   config = function()
-    require("telescope").setup({})
+    require("telescope").setup({ 
+      pickers = {
+        git_files = {
+          theme = "dropdown",
+          previewer = true,
+        },
+      }
+    })
     local function find_git_root()
       -- Use the current buffer's path as the starting point for the git search
       local current_file = vim.api.nvim_buf_get_name(0)
