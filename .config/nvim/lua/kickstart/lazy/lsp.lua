@@ -91,7 +91,7 @@ return {
                 { buffer = buffer, desc = "[C]ode action [F]ix all" })
               vim.keymap.set("n", "<leader>cR", ":TSToolsRenameFile<CR>",
                 { desc = "[C]ode action [R]ename File", buffer = buffer })
-              vim.keymap.set("n", "gd", ":TSToolsGoToSourceDefinition<CR>",
+              vim.keymap.set("n", "gD", ":TSToolsGoToSourceDefinition<CR>",
                 { desc = "[G]o to source [D]efinition", buffer = buffer })
               vim.keymap.set("n", "<leader>ci", ":TSToolsAddMissingImports<CR>",
                 { desc = "[C]ode action add missing [I]mports", buffer = buffer })
@@ -124,10 +124,25 @@ return {
       mapping = cmp.mapping.preset.insert({
         ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
         ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-        ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-        -- ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        -- ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+        -- sorry, Ctrl-y is a little hard to press
+        -- press enter to confirm, and dont auto select the first item
+        ['<CR>'] = cmp.mapping.confirm({ select = false }),
         ["<C-Space>"] = cmp.mapping.complete(),
       }),
+      -- Cmp menu width varies greatly when using Rust
+      -- https://github.com/hrsh7th/nvim-cmp/issues/1154
+      formatting = {
+        format = function(entry, vim_item)
+          local m = vim_item.menu and vim_item.menu or ""
+          if #m > 20 then
+            vim_item.menu = string.sub(m, 1, 20) .. "..."
+          end
+          return vim_item
+          -- vim_item.menu = nil
+          -- return vim_item
+        end,
+      },
       sources = cmp.config.sources({
         { name = 'nvim_lsp' },
         { name = 'luasnip' }, -- For luasnip users.
@@ -141,7 +156,7 @@ return {
     vim.diagnostic.config({
       -- update_in_insert = true,
       float = {
-        focusable = false,
+        focusable = true,
         style = "minimal",
         border = "rounded",
         source = "always",

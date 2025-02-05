@@ -1,0 +1,18 @@
+theme = rose-pine
+background = 000000
+
+font-size = 16
+font-family = FiraCode Nerd Font
+#font-family = FiraCode Nerd Font Mono
+#font-family = UbuntuMono Nerd Font
+#font-family = GeistMono Nerd Font Mono
+#font-family = Hack
+
+window-decoration = false
+
+cursor-style = block
+cursor-style-blink = true
+cursor-color = ffffff
+
+shell-integration-features = no-cursor,no-sudo,title
+

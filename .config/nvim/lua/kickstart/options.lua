@@ -93,3 +93,4 @@ vim.g.clipboard = {
 
 -- disable deprecation messages at startup
 vim.deprecate = function() end
+

@@ -34,12 +34,14 @@ local config = {
   colors = {
     tab_bar = {
       background = 'rgba(0,0,0,0)'
-    }
+    },
+    cursor_bg = '#ffffff',
+    cursor_fg = '#000000',
   },
 
   -- font
   font = f.get_font(),
-  font_size = 18,
+  font_size = 16,
   -- line_height = 1.0,
 
   -- colors
@@ -62,7 +64,7 @@ local config = {
   -- disable_default_key_bindings = true,
   adjust_window_size_when_changing_font_size = false,
   debug_key_events = false,
-  enable_tab_bar = true,
+  enable_tab_bar = false,
   tab_bar_at_bottom = false,
   use_fancy_tab_bar = false,
   native_macos_fullscreen_mode = false,

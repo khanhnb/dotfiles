@@ -46,5 +46,6 @@ export PATH="$GOPATH/bin:$PATH"
 export PATH=/opt/homebrew/opt/node@20/bin:$PATH
 # export PATH=$HOME/.asdf/shims/:$PATH
 export PATH="$PATH:$HOME/.foundry/bin"
+export PATH=~/.local/share/solana/install/active_release/bin:$PATH
 
 echo "zsh's config loaded"

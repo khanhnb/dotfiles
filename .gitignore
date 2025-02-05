@@ -1,2 +1,4 @@
 .DS_Store
 nvim.bak
+.config/karabiner/automatic_backups/
+.config/fish/conf.d/
