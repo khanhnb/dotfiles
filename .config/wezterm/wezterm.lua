@@ -1,5 +1,3 @@
---
--- ██╗    ██╗███████╗███████╗████████╗███████╗██████╗ ███╗   ███╗
 -- ██║    ██║██╔════╝╚══███╔╝╚══██╔══╝██╔════╝██╔══██╗████╗ ████║
 -- ██║ █╗ ██║█████╗    ███╔╝    ██║   █████╗  ██████╔╝██╔████╔██║
 -- ██║███╗██║██╔══╝   ███╔╝     ██║   ██╔══╝  ██╔══██╗██║╚██╔╝██║
@@ -26,8 +24,8 @@ local config = {
     -- w.get_wallpaper(),
     b.get_background(),
   },
-  -- window_background_opacity = 0.6,
-  -- macos_window_background_blur = 30,
+  window_background_opacity = 0.6,
+  macos_window_background_blur = 30,
 
   -- colors
   -- transparent tab_bar
@@ -41,7 +39,7 @@ local config = {
 
   -- font
   font = f.get_font(),
-  font_size = 16,
+  font_size = 17,
   -- line_height = 1.0,
 
   -- colors

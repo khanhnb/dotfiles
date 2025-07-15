@@ -62,6 +62,10 @@ return {
     --   require("trouble").toggle("document_diagnostics")
     -- end, { desc = "Trouble Document Diagnostics" })
 
+    vim.keymap.set("n", "<leader>xc", function()
+      require("trouble").close()
+    end, { desc = "Trouble Close" })
+
     vim.keymap.set("n", "<leader>xq", function()
       require("trouble").toggle("quickfix")
     end, { desc = "Trouble Quickfix" })

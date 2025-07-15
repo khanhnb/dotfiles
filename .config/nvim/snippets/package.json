@@ -1,0 +1,19 @@
+{
+  "name": "test-snippets",
+  "contributes": {
+    "snippets": [
+      {
+        "language": [
+          "cpp"
+        ],
+        "path": "./cpp.json"
+      },
+      {
+        "language": [
+          "typescript"
+        ],
+        "path": "./nest.json"
+      }
+    ]
+  }
+}

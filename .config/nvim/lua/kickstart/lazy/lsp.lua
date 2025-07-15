@@ -1,156 +1,120 @@
 return {
   "neovim/nvim-lspconfig",
   dependencies = {
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
-    "hrsh7th/cmp-nvim-lsp",
-    "hrsh7th/cmp-buffer",
-    "hrsh7th/cmp-path",
-    "hrsh7th/cmp-cmdline",
-    "hrsh7th/nvim-cmp",
-    "L3MON4D3/LuaSnip",
-    "saadparwaiz1/cmp_luasnip",
+    { 'mason-org/mason.nvim', opts = {} },
+    'mason-org/mason-lspconfig.nvim',
+    'WhoIsSethDaniel/mason-tool-installer.nvim',
     "j-hui/fidget.nvim",
-    {
-      "zbirenbaum/copilot-cmp",
-      dependencies = "copilot.lua",
-      opts = {
-        event = { "InsertEnter", "LspAttach" },
-        fix_pairs = true,
-      },
-    },
+    -- {
+    --   "zbirenbaum/copilot-cmp",
+    --   dependencies = "copilot.lua",
+    --   opts = {
+    --     event = { "InsertEnter", "LspAttach" },
+    --     fix_pairs = true,
+    --   },
+    -- },
     {
       "pmizio/typescript-tools.nvim",
       dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
       opts = {},
-    }
+    },
+    'saghen/blink.cmp',
   },
 
   config = function()
-    local cmp = require('cmp')
-    local cmp_lsp = require("cmp_nvim_lsp")
-    local capabilities = vim.tbl_deep_extend(
-      "force",
-      {},
-      vim.lsp.protocol.make_client_capabilities(),
-      cmp_lsp.default_capabilities())
+    local capabilities = require('blink.cmp').get_lsp_capabilities()
 
-    require("fidget").setup({})
-    require("mason").setup()
-    require("mason-lspconfig").setup({
-      ensure_installed = {
-        "lua_ls",
-        "rust_analyzer",
-        "gopls",
-        "ts_ls"
-      },
-      handlers = {
-        function(server_name) -- default handler (optional)
-          require("lspconfig")[server_name].setup {
-            capabilities = capabilities
-          }
-        end,
-
-        zls = function()
-          local lspconfig = require("lspconfig")
-          lspconfig.zls.setup({
-            root_dir = lspconfig.util.root_pattern(".git", "build.zig", "zls.json"),
-            settings = {
-              zls = {
-                enable_inlay_hints = true,
-                enable_snippets = true,
-                warn_style = true,
-              },
-            },
-          })
-          vim.g.zig_fmt_parse_errors = 0
-          vim.g.zig_fmt_autosave = 0
-        end,
-        ["lua_ls"] = function()
-          local lspconfig = require("lspconfig")
-          lspconfig.lua_ls.setup {
-            capabilities = capabilities,
-            settings = {
-              Lua = {
-                runtime = { version = "Lua 5.1" },
-                diagnostics = {
-                  globals = { "bit", "vim", "it", "describe", "before_each", "after_each" },
-                }
-              }
-            }
-          }
-        end,
-        ["ts_ls"] = function()
-          require("typescript-tools").setup({
-            on_attach = function(_, buffer)
-              vim.keymap.set("n", "<leader>co", ":TSToolsOrganizeImports<CR>",
-                { buffer = buffer, desc = "[C]ode action [O]rganize imports" })
-              vim.keymap.set("n", "<leader>cr", ":TSToolsRemoveUnused<CR>",
-                { buffer = buffer, desc = "[C]ode action [R]emove unused" })
-              vim.keymap.set("n", "<leader>cf", ":TSToolsFixAll<CR>",
-                { buffer = buffer, desc = "[C]ode action [F]ix all" })
-              vim.keymap.set("n", "<leader>cR", ":TSToolsRenameFile<CR>",
-                { desc = "[C]ode action [R]ename File", buffer = buffer })
-              vim.keymap.set("n", "gD", ":TSToolsGoToSourceDefinition<CR>",
-                { desc = "[G]o to source [D]efinition", buffer = buffer })
-              vim.keymap.set("n", "<leader>ci", ":TSToolsAddMissingImports<CR>",
-                { desc = "[C]ode action add missing [I]mports", buffer = buffer })
-              -- vim.lsp.inlay_hint.enable(true)
-            end,
-            settings = {
-              tsserver_file_preferences = {
-                includeInlayParameterNameHints = "all",
-                includeCompletionsForModuleExports = true,
-                quotePreference = "auto",
-              },
-              tsserver_format_options = {
-                allowIncompleteCompletions = false,
-                allowRenameOfImportPath = false,
-              }
-            }
-          })
-        end
+    require("typescript-tools").setup({
+      on_attach = function(_, buffer)
+        vim.keymap.set("n", "<leader>co", ":TSToolsOrganizeImports<CR>",
+          { buffer = buffer, desc = "[C]ode action [O]rganize imports" })
+        vim.keymap.set("n", "<leader>cr", ":TSToolsRemoveUnused<CR>",
+          { buffer = buffer, desc = "[C]ode action [R]emove unused" })
+        vim.keymap.set("n", "<leader>cf", ":TSToolsFixAll<CR>",
+          { buffer = buffer, desc = "[C]ode action [F]ix all" })
+        vim.keymap.set("n", "<leader>cR", ":TSToolsRenameFile<CR>",
+          { desc = "[C]ode action [R]ename File", buffer = buffer })
+        vim.keymap.set("n", "gD", ":TSToolsGoToSourceDefinition<CR>",
+          { desc = "[G]o to source [D]efinition", buffer = buffer })
+        vim.keymap.set("n", "<leader>ci", ":TSToolsAddMissingImports<CR>",
+          { desc = "[C]ode action add missing [I]mports", buffer = buffer })
+        -- vim.lsp.inlay_hint.enable(true)
+      end,
+      settings = {
+        tsserver_file_preferences = {
+          includeInlayParameterNameHints = "all",
+          includeCompletionsForModuleExports = true,
+          quotePreference = "auto",
+        },
+        tsserver_format_options = {
+          allowIncompleteCompletions = false,
+          allowRenameOfImportPath = false,
+        }
       }
     })
 
-    local cmp_select = { behavior = cmp.SelectBehavior.Select }
-
-    cmp.setup({
-      snippet = {
-        expand = function(args)
-          require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-        end,
+    require("fidget").setup({})
+      -- zls = function()
+      --   local lspconfig = require("lspconfig")
+      --   lspconfig.zls.setup({
+      --     root_dir = lspconfig.util.root_pattern(".git", "build.zig", "zls.json"),
+      --     settings = {
+      --       zls = {
+      --         enable_inlay_hints = true,
+      --         enable_snippets = true,
+      --         warn_style = true,
+      --       },
+      --     },
+      --   })
+      --   vim.g.zig_fmt_parse_errors = 0
+      --   vim.g.zig_fmt_autosave = 0
+      -- end,
+    require("mason").setup()
+    require("mason-lspconfig").setup({
+      ensure_installed = {
+        "rust_analyzer",
+        "lua_ls",
+        "gopls",
+        "pyright",
+        "solidity_ls_nomicfoundation",
       },
-      mapping = cmp.mapping.preset.insert({
-        ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-        ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-        -- ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-        -- sorry, Ctrl-y is a little hard to press
-        -- press enter to confirm, and dont auto select the first item
-        ['<CR>'] = cmp.mapping.confirm({ select = false }),
-        ["<C-Space>"] = cmp.mapping.complete(),
-      }),
-      -- Cmp menu width varies greatly when using Rust
-      -- https://github.com/hrsh7th/nvim-cmp/issues/1154
-      formatting = {
-        format = function(entry, vim_item)
-          local m = vim_item.menu and vim_item.menu or ""
-          if #m > 20 then
-            vim_item.menu = string.sub(m, 1, 20) .. "..."
-          end
-          return vim_item
-          -- vim_item.menu = nil
-          -- return vim_item
-        end,
+    })
+    vim.lsp.config('lua_ls', {
+      capabilities = capabilities,
+      settings = {
+        Lua = {
+          runtime = { version = "Lua 5.1" },
+          diagnostics = {
+            globals = { "bit", "vim", "it", "describe", "before_each", "after_each" },
+          }
+        }
+      }
+    })
+    vim.lsp.config('rust_analyzer', {
+      capabilities = capabilities,
+      settings = {
+        ["rust-analyzer"] = {
+          cargo = {
+            features = "all",
+          },
+          checkOnSave = {
+            enable = true,
+          },
+          check = {
+            command = "clippy",
+          },
+          imports = {
+            group = {
+              enable = false,
+            },
+          },
+          completion = {
+            postfix = {
+              enable = false,
+            },
+          },
+        },
       },
-      sources = cmp.config.sources({
-        { name = 'nvim_lsp' },
-        { name = 'luasnip' }, -- For luasnip users.
-        { name = 'path' },
-        { name = 'copilot' },
-      }, {
-        { name = 'buffer' },
-      })
     })
 
     vim.diagnostic.config({

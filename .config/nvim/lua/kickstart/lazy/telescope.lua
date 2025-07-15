@@ -2,16 +2,28 @@ return {
   'nvim-telescope/telescope.nvim',
   tag = '0.1.8',
   -- or                              , branch = '0.1.x',
-  dependencies = { 'nvim-lua/plenary.nvim' },
+  dependencies = {
+    'nvim-lua/plenary.nvim',
+    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+  },
   config = function()
-    require("telescope").setup({ 
+    require("telescope").setup({
       pickers = {
         git_files = {
-          theme = "dropdown",
-          previewer = true,
+          -- theme = "dropdown",
+          theme = "ivy",
+          layout_config = {
+            height = 10,
+          },
         },
+      },
+      extensions = {
+        fzf = {}
       }
     })
+
+    require("telescope").load_extension("fzf")
+
     local function find_git_root()
       -- Use the current buffer's path as the starting point for the git search
       local current_file = vim.api.nvim_buf_get_name(0)
@@ -85,6 +97,15 @@ return {
       local word = vim.fn.expand("<cWORD>")
       builtin.grep_string({ search = word })
     end)
+    -- search all nvim packages
+    -- vim.keymap.set('n', '<leader>sp', function()
+    --   require('telescope.builtin').find_files({
+    --     prompt_title = '[S]earch Neovim [P]ackages',
+    --     cwd = vim.fs.joinpath(vim.fn.stdpath('data'), 'lazy')
+    --   })
+    -- end)
+    -- advanced search
+    require('kickstart.custom.multigrep').setup()
   end
 
 }

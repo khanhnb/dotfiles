@@ -47,5 +47,6 @@ export PATH=/opt/homebrew/opt/node@20/bin:$PATH
 # export PATH=$HOME/.asdf/shims/:$PATH
 export PATH="$PATH:$HOME/.foundry/bin"
 export PATH=~/.local/share/solana/install/active_release/bin:$PATH
+# export HOMEBREW_NO_AUTO_UPDATE=1
 
 echo "zsh's config loaded"

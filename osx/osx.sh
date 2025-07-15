@@ -203,3 +203,7 @@ defaults write com.apple.dock autohide-delay -float 1000
 
 echo "Kill affected applications"
 for app in Safari Finder Dock Mail SystemUIServer; do killall "$app" >/dev/null 2>&1; done
+
+echo "Start yabai and skhd"
+skhd --start-service
+yabai --start-service

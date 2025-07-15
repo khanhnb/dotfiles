@@ -5,3 +5,4 @@ bindkey '^[[1;5D' backward-word
 bindkey '^[[1;5C' forward-word
 bindkey '^A' beginning-of-line
 bindkey '^E' end-of-line
+WORDCHARS=''

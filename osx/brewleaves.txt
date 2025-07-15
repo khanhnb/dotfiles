@@ -23,3 +23,7 @@ font-ubuntu-mono-nerd-font
 karabiner-elements
 stats
 ghostty
+node@20
+go
+bitwarden
+obsidian

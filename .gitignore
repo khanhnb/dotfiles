@@ -2,3 +2,6 @@
 nvim.bak
 .config/karabiner/automatic_backups/
 .config/fish/conf.d/
+.config/github-copilot/
+.config/karabiner/assets/
+

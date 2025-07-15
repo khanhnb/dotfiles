@@ -10,6 +10,8 @@ return {
 
     config = function()
       local ls = require("luasnip")
+      require("luasnip.loaders.from_vscode").lazy_load({})
+      require("luasnip.loaders.from_vscode").lazy_load({ paths = { "~/.config/nvim/snippets/" } })
       ls.filetype_extend("javascript", { "jsdoc" })
 
       --- TODO: What is expand?
@@ -26,3 +28,4 @@ return {
     end,
   }
 }
+
