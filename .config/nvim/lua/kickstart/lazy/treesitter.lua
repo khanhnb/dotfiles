@@ -11,7 +11,6 @@ return { -- Highlight, edit, and navigate code
         "lua",
         "python",
         "rust",
-        "ron",
         "javascript",
         "vimdoc",
         "vim",
@@ -20,7 +19,7 @@ return { -- Highlight, edit, and navigate code
         "solidity",
         "markdown",
         "markdown_inline",
-        "tsx"
+        "tsx",
       },
       -- Autoinstall languages that are not installed
       auto_install = true,
@@ -29,14 +28,14 @@ return { -- Highlight, edit, and navigate code
     })
 
     local treesitter_parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-        treesitter_parser_config.templ = {
-            install_info = {
-                url = "https://github.com/vrischmann/tree-sitter-templ.git",
-                files = {"src/parser.c", "src/scanner.c"},
-                branch = "master",
-            },
-        }
+    treesitter_parser_config.templ = {
+      install_info = {
+        url = "https://github.com/vrischmann/tree-sitter-templ.git",
+        files = { "src/parser.c", "src/scanner.c" },
+        branch = "master",
+      },
+    }
 
-        vim.treesitter.language.register("templ", "templ")
+    vim.treesitter.language.register("templ", "templ")
   end,
 }

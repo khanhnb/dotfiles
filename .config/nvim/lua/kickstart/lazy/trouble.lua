@@ -31,12 +31,19 @@ return {
       require("trouble").toggle("diagnostics")
     end, { desc = "Toggle Trouble" })
 
+    vim.keymap.set("n", "<leader>xe", function()
+      require("trouble").toggle({
+        mode = "diagnostics",
+        filter = { severity = vim.diagnostic.severity.ERROR },
+      })
+    end, { desc = "Toggle Trouble" })
+
     vim.keymap.set("n", "]t", function()
-      require("trouble").next({ skip_groups = true, jump = true });
+      require("trouble").next({ skip_groups = true, jump = true })
     end)
 
     vim.keymap.set("n", "[t", function()
-      require("trouble").prev({ skip_groups = true, jump = true });
+      require("trouble").prev({ skip_groups = true, jump = true })
     end)
 
     vim.keymap.set("n", "gd", function()
@@ -73,5 +80,5 @@ return {
     vim.keymap.set("n", "<leader>xl", function()
       require("trouble").toggle("loclist")
     end, { desc = "Trouble Loclist" })
-  end
+  end,
 }

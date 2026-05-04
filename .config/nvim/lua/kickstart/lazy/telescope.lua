@@ -7,7 +7,14 @@ return {
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
   },
   config = function()
+    local open_with_trouble = require("trouble.sources.telescope").open
     require("telescope").setup({
+      defaults = {
+        mappings = {
+          n = { ["<C-q>"] = open_with_trouble },
+          i = { ["<C-q>"] = open_with_trouble }
+        }
+      },
       pickers = {
         git_files = {
           -- theme = "dropdown",
@@ -52,7 +59,21 @@ return {
       if git_root then
         require("telescope.builtin").live_grep({
           search_dirs = { git_root },
-          file_ignore_patterns = { ".git", "node_modules" },
+          file_ignore_patterns = { ".git/", "node_modules" },
+          additional_args = function(opts)
+            return { "--hidden" }
+          end,
+        })
+      end
+    end
+
+    local function grep_string_git_root()
+      local git_root = find_git_root()
+      if git_root then
+        require("telescope.builtin").grep_string({
+          search_dirs = { git_root },
+          search = vim.fn.input("Grep > "),
+          file_ignore_patterns = { ".git/", "node_modules" },
           additional_args = function(opts)
             return { "--hidden" }
           end,
@@ -69,7 +90,7 @@ return {
     -- vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "[S]earch current [W]ord" })
     vim.keymap.set("n", "<leader>sg", live_grep_git_root, { desc = "[S]earch by [G]rep" })
     vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
-    vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
+    vim.keymap.set("n", "<leader>sb", builtin.buffers, { desc = "[ ] Find existing buffers" })
     vim.keymap.set("n", "<leader>/", function()
       builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
         -- winblend = 10,
@@ -85,13 +106,19 @@ return {
     vim.keymap.set("n", "<leader>sn", function()
       builtin.find_files({ cwd = vim.fn.stdpath("config") })
     end, { desc = "[S]earch [N]eovim files" })
-    vim.keymap.set('n', '<leader>sw', function()
-      builtin.grep_string({ search = vim.fn.input("Grep > ") })
-    end)
+    -- builtin.grep_string({ search = vim.fn.input("Grep > ") })
+    vim.keymap.set('n', '<leader>sw', grep_string_git_root)
     -- might need it later
-    vim.keymap.set('n', '<leader>pws', function()
+    vim.keymap.set('n', '<leader>sc', function()
       local word = vim.fn.expand("<cword>")
-      builtin.grep_string({ search = word })
+      builtin.grep_string({
+        search = word,
+        search_dirs = { find_git_root() },
+        file_ignore_patterns = { ".git/", "node_modules" },
+        additional_args = function(opts)
+          return { "--hidden" }
+        end,
+      })
     end)
     vim.keymap.set('n', '<leader>pWs', function()
       local word = vim.fn.expand("<cWORD>")

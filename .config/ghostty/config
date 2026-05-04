@@ -1,7 +1,11 @@
-theme = rose-pine-moon
-background = 000000
+# theme = TokyoNight Night
+theme = Rose Pine Moon
+# background = 000000
+# tokyonight-night background
+# background = 1a1b26
+background = 16161e
 # background-blur = true
-# background-opacity = 0.85
+# background-opacity = 0.9
 
 font-size = 18
 # font-family = FiraCode Nerd Font
@@ -15,7 +19,13 @@ font-size = 18
 # font-family = JetBrains Mono
 # font-family = Berkeley Mono
 font-family = TX-02
-font-style = Retina
+font-style = Medium
+# disable font ligatures
+font-feature = -calt
+font-feature = -liga
+font-feature = -dlig
+# adjust-cell-height = -2%
+# font-style = Medium
 # font-style-bold = Bold
 # font-style-italic = Bold
 # font-style-bold-italic = Bold
@@ -26,6 +36,10 @@ window-decoration = false
 
 cursor-style = block
 cursor-style-blink = true
-cursor-color = ffffff
+# cursor-color = ffffff
 
 shell-integration-features = no-cursor,no-sudo,no-title
+
+#pre-release build
+auto-update-channel = tip
+

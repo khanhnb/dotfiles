@@ -15,13 +15,14 @@ antigen theme robbyrussell
 antigen apply
 
 # use block cursor
-ZVM_CURSOR_STYLE_ENABLED=false
+# ZVM_CURSOR_STYLE_ENABLED=false
 
 ## My "Plugins"
 sources=(
   'aliases'
   'git'
   'keymaps'
+  # 'cursor'
 )
 
 for s in "${sources[@]}"; do
@@ -50,3 +51,6 @@ export PATH=~/.local/share/solana/install/active_release/bin:$PATH
 # export HOMEBREW_NO_AUTO_UPDATE=1
 
 echo "zsh's config loaded"
+
+# amp
+export PATH="$HOME/.local/bin:$PATH"

@@ -1,3 +1,2 @@
 homebrew/cask-fonts
 homebrew/core
-koekeishiya/formulae

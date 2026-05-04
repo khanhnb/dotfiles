@@ -1,3 +1,4 @@
+vim = vim
 vim.g.mapleader = " "
 -- vim.keymap.set("n", "<leader>pv", vim.cmd.Oil)
 vim.keymap.set("n", "-", vim.cmd.Oil)
@@ -68,5 +69,10 @@ vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagn
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
 -- LSP
-vim.keymap.set("n", "<leader>lr", vim.cmd.LspRestart, {desc = "[L]SP [R]estart"})
-
+vim.keymap.set("n", "<leader>lr", function()
+  vim.cmd("lsp restart")
+end, { desc = "[L]SP [R]estart" })
+vim.keymap.set("n", "<leader><leader>", function()
+  vim.cmd("so")
+  print("Sourced")
+end, { desc = "[ ] Find existing buffers" })

@@ -45,7 +45,7 @@ vim.opt.list = true
 -- vim.opt.listchars:append "space:⋅"
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣", extends = "⟩", precedes = "⟨", eol = "↵" }
 -- vim.opt.listchars:append("eol:↵")
-vim.opt.guicursor = ""
+vim.o.guicursor = ""
 vim.opt.mouse = "a"
 
 -- lsp round border
@@ -67,10 +67,14 @@ vim.opt.mouse = "a"
 -- 	border = _border,
 -- }
 
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+-- vim.opt.foldmethod = "expr"
+-- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+-- vim.opt.foldenable = false
+-- vim.opt.foldlevel = 0
+-- disable folding
 vim.opt.foldenable = false
-vim.opt.foldlevel = 0
+vim.opt.foldmethod = "manual"
+vim.opt.foldlevelstart = 99
 
 vim.opt.spelllang = "en_us"
 
@@ -80,15 +84,15 @@ vim.opt.laststatus = 3
 --
 -- copy remote clipboard to local clipboard through osc52
 vim.g.clipboard = {
-  name = 'OSC 52',
-  copy = {
-    ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
-    ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
-  },
-  paste = {
-    ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
-    ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
-  },
+	name = "OSC 52",
+	copy = {
+		["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+		["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+	},
+	paste = {
+		["+"] = require("vim.ui.clipboard.osc52").paste("+"),
+		["*"] = require("vim.ui.clipboard.osc52").paste("*"),
+	},
 }
 
 -- disable deprecation messages at startup

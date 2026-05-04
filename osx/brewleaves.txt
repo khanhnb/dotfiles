@@ -3,8 +3,6 @@ fd
 fzf
 gnu-time
 jq
-koekeishiya/formulae/skhd
-koekeishiya/formulae/yabai
 neofetch
 neovim
 ninja
@@ -27,3 +25,4 @@ node@20
 go
 bitwarden
 obsidian
+nikitabobko/tap/aerospace

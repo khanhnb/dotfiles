@@ -4,4 +4,7 @@ nvim.bak
 .config/fish/conf.d/
 .config/github-copilot/
 .config/karabiner/assets/
-
+.config/htop/
+.config/mole/
+.config/simplex/
+*.log
