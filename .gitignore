@@ -8,3 +8,5 @@ nvim.bak
 .config/mole/
 .config/simplex/
 *.log
+.luarc.json
+.config/opencode/package-lock.json

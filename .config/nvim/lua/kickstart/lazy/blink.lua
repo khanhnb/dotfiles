@@ -47,7 +47,7 @@ return { -- Autocompletion
 				-- disable_inline_completion = true, -- disables inline completion for use with cmp
 				-- disable_keymaps = false,
 				keymaps = {
-					accept_suggestion = nil,
+					accept_suggestion = "<Tab>",
 					-- clear_suggestion = "<C-]>",
 					-- accept_word = "<C-j>",
 				},
@@ -57,9 +57,16 @@ return { -- Autocompletion
 	--- @module 'blink.cmp'
 	--- @type blink.cmp.Config
 	opts = {
-		-- keymap = {
-		--   preset = "default",
-		-- },
+		keymap = {
+			preset = "none",
+			["<C-Space>"] = { "show", "show_documentation", "hide_documentation" },
+			["<C-y>"] = { "select_and_accept", "fallback" },
+			["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
+			["<C-p>"] = { "select_prev", "fallback_to_mappings" },
+			["<C-n>"] = { "select_next", "fallback_to_mappings" },
+			["<Up>"] = { "select_prev", "fallback" },
+			["<Down>"] = { "select_next", "fallback" },
+		},
 
 		-- appearance = {
 		--   nerd_font_variant = "mono",
@@ -74,13 +81,13 @@ return { -- Autocompletion
 			--     end,
 			--   },
 			-- },
-			-- ghost_text = {
-			--   enabled = true,
-			--   show_with_menu = false,
-			-- },
+			ghost_text = {
+				enabled = false,
+				-- show_with_menu = false,
+			},
 			documentation = { auto_show = false, auto_show_delay_ms = 500 },
 			menu = {
-				-- auto_show = false,
+				auto_show = false,
 				draw = {
 					columns = { { "label", "label_description", gap = 1 }, { "kind" } },
 				},
@@ -88,8 +95,8 @@ return { -- Autocompletion
 		},
 
 		sources = {
-			default = { "lsp", "supermaven", "path", "snippets", "lazydev" },
-			-- default = { 'lsp', 'path', 'snippets', 'lazydev' },
+			-- default = { "lsp", "supermaven", "path", "snippets", "lazydev" },
+			default = { "lsp", "path", "snippets", "lazydev" },
 			providers = {
 				lsp = { score_offset = 2 },
 				snippets = {

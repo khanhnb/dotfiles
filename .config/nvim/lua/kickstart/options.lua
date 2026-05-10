@@ -46,7 +46,7 @@ vim.opt.list = true
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣", extends = "⟩", precedes = "⟨", eol = "↵" }
 -- vim.opt.listchars:append("eol:↵")
 vim.o.guicursor = ""
-vim.opt.mouse = "a"
+vim.opt.mouse = "nv"
 
 -- lsp round border
 -- local _border = "rounded"
@@ -96,7 +96,7 @@ vim.g.clipboard = {
 }
 
 -- disable deprecation messages at startup
-vim.deprecate = function() end
+-- vim.deprecate = function() end
 
 -- vim.g.rust_recommended_style = 0
 
