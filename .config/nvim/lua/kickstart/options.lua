@@ -105,3 +105,4 @@ vim.g.clipboard = {
 -- LSP, treesitter and other ft plugins will be disabled.
 -- mini.animate will also be disabled.
 -- vim.g.bigfile_size = 1024 * 1024 * 1.5 -- 1.5 MB
+vim.g.loaded_matchparen = 1

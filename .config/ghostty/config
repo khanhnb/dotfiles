@@ -41,5 +41,6 @@ cursor-style-blink = true
 shell-integration-features = no-cursor,no-sudo,no-title
 
 #pre-release build
-auto-update-channel = tip
+# auto-update-channel = tip
+auto-update-channel = stable
 

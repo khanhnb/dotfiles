@@ -5,20 +5,13 @@ return {
     "mason-org/mason-lspconfig.nvim",
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     "j-hui/fidget.nvim",
-    -- {
-    --   "zbirenbaum/copilot-cmp",
-    --   dependencies = "copilot.lua",
-    --   opts = {
-    --     event = { "InsertEnter", "LspAttach" },
-    --     fix_pairs = true,
-    --   },
-    -- },
     {
       "pmizio/typescript-tools.nvim",
       dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
       opts = {},
     },
     "saghen/blink.cmp",
+    "folke/lazydev.nvim",
   },
 
   config = function()
@@ -102,86 +95,94 @@ return {
         "pyright",
         -- "solidity_ls_nomicfoundation",
         "solidity_ls",
+        "stylua",
       },
     })
-    vim.lsp.config("lua_ls", {
-      on_init = function(client)
-        client.server_capabilities.documentFormattingProvider = false -- Disable formatting (formatting is done by stylua)
-
-        if client.workspace_folders then
-          local path = client.workspace_folders[1].name
-          if
-              path ~= vim.fn.stdpath("config")
-              and (vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc"))
-          then
-            return
-          end
-        end
-
-        client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
-          runtime = {
-            version = "LuaJIT",
-            path = { "lua/?.lua", "lua/?/init.lua" },
-          },
-          workspace = {
-            checkThirdParty = false,
-            -- NOTE: this is a lot slower and will cause issues when working on your own configuration.
-            --  See https://github.com/neovim/nvim-lspconfig/issues/3189
-            library = vim.tbl_extend("force", vim.api.nvim_get_runtime_file("", true), {
-              "${3rd}/luv/library",
-              "${3rd}/busted/library",
-            }),
-          },
-        })
-      end,
-      ---@type lspconfig.settings.lua_ls
-      settings = {
-        Lua = {
-          format = { enable = false }, -- Disable formatting (formatting is done by stylua)
-        },
-      },
-    })
-    vim.lsp.config("rust_analyzer", {
-      capabilities = capabilities,
-      settings = {
-        ["rust-analyzer"] = {
-          cargo = {
-            features = "all",
-            -- allFeatures = false,
-          },
-          checkOnSave = {
-            enable = true,
-          },
-          -- cachePriming = { enable = false },
-          check = {
-            command = "clippy",
-            -- extraArgs = { "--release" },
-          },
-          imports = {
-            group = {
-              enable = false,
+    local servers = {
+      stylua = {},
+      -- lua_ls = {
+      --   on_init = function(client)
+      --     client.server_capabilities.documentFormattingProvider = false -- Disable formatting (formatting is done by stylua)
+      --
+      --     if client.workspace_folders then
+      --       local path = client.workspace_folders[1].name
+      --       if
+      --           path ~= vim.fn.stdpath("config")
+      --           and (vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc"))
+      --       then
+      --         return
+      --       end
+      --     end
+      --
+      --     client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
+      --       runtime = {
+      --         version = "LuaJIT",
+      --         path = { "lua/?.lua", "lua/?/init.lua" },
+      --       },
+      --       workspace = {
+      --         checkThirdParty = false,
+      --         -- NOTE: this is a lot slower and will cause issues when working on your own configuration.
+      --         --  See https://github.com/neovim/nvim-lspconfig/issues/3189
+      --         library = vim.tbl_extend("force", vim.api.nvim_get_runtime_file("", true), {
+      --           "${3rd}/luv/library",
+      --           "${3rd}/busted/library",
+      --         }),
+      --       },
+      --     })
+      --   end,
+      --   ---@type lspconfig.settings.lua_ls
+      --   settings = {
+      --     Lua = {
+      --       format = { enable = false }, -- Disable formatting (formatting is done by stylua)
+      --     },
+      --   },
+      -- },
+      rust_analyzer = {
+        capabilities = capabilities,
+        settings = {
+          ["rust-analyzer"] = {
+            cargo = {
+              features = "all",
+              -- allFeatures = false,
+            },
+            checkOnSave = {
+              enable = true,
+            },
+            -- cachePriming = { enable = false },
+            check = {
+              command = "clippy",
+              -- extraArgs = { "--release" },
+            },
+            imports = {
+              group = {
+                enable = false,
+              },
+            },
+            completion = {
+              postfix = {
+                enable = false,
+              },
             },
           },
-          completion = {
-            postfix = {
-              enable = false,
-            },
-          },
         },
       },
-    })
+      solidity_ls = {
+        on_attach = function(_, buffer)
+          vim.keymap.set(
+            "n",
+            "<leader>f",
+            ":!forge fmt<CR>",
+            { buffer = buffer, desc = "[F]ormat using forge fmt" }
+          )
+        end,
+        -- root_dir = require("lspconfig.util").root_pattern("foundry.toml", ".git"),
+      },
+    }
 
-    vim.lsp.config("solidity_ls", {
-      on_attach = function(_, buffer)
-        vim.keymap.set(
-          "n",
-          "<leader>f",
-          ":!forge fmt<CR>",
-          { buffer = buffer, desc = "[F]ormat using forge fmt" }
-        )
-      end,
-      -- root_dir = require("lspconfig.util").root_pattern("foundry.toml", ".git"),
-    })
+    for name, server in pairs(servers) do
+      vim.lsp.config(name, server)
+      vim.lsp.enable(name)
+    end
 
     -- manually trigger rust analyzer check
     ---@alias rustaceanvim.flyCheckCommand 'run' | 'clear' | 'cancel'
@@ -193,7 +194,7 @@ return {
       })
       for _, client in ipairs(clients) do
         local params = cmd == "run" and vim.lsp.util.make_text_document_params() or nil
-        client.notify("rust-analyzer/" .. cmd .. "Flycheck", params)
+        client:notify("rust-analyzer/" .. cmd .. "Flycheck", params)
       end
     end
     vim.keymap.set("n", "<leader>cc", function()

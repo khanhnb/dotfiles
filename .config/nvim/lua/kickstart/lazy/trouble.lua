@@ -13,7 +13,8 @@ return {
       modes = {
         diagnostics = {
           groups = {
-            { "filename", format = "{file_icon} {basename:Title} {count}" },
+            -- { "filename", format = "{file_icon} {basename:Title} {count}" },
+            -- { "filename", format = "{basename:Title} {count}" },
           },
           format = "{severity_icon} {message:md} {item.source} {hl:Comment}({code}){hl} {pos}",
         },

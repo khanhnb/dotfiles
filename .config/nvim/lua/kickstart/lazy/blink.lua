@@ -96,7 +96,7 @@ return { -- Autocompletion
 
 		sources = {
 			-- default = { "lsp", "supermaven", "path", "snippets", "lazydev" },
-			default = { "lsp", "path", "snippets", "lazydev" },
+			default = { "lazydev", "lsp", "path", "snippets", "lazydev" },
 			providers = {
 				lsp = { score_offset = 2 },
 				snippets = {
